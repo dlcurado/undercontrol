@@ -1,7 +1,9 @@
-Este documento tem a finalidade de resumir a estrutura tecnica arquitetural do projeto.
+Este documento tem a finalidade de resumir a estrutura técnica arquitetural do projeto.
+
 Texto no Master
 Texto no Master
 Texto no Master
 Texto no Master
+Alteração no Arquitetura
 Texto no Master
 Texto no Master
