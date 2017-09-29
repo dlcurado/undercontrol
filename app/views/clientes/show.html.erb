@@ -1,0 +1,22 @@
+<h1>Dados do cliente</h1>
+
+<p><%= @cliente.nome %></p>
+<p><%= @cliente.telefone %></p>
+<p><%= @cliente.email %></p>
+  
+
+<table border='1'>
+	<tr>
+		<th>Data registro</td>
+		<th>Observacao</td>
+		<th>Editar</td>
+		<th>Desativar</td>
+	</tr>
+	<%= render @cliente.historicos %>
+</table>
+
+<%= render 'historicos/form' %>
+
+<p><%= link_to 'Listar clientes', clientes_path %></p>
+
+  

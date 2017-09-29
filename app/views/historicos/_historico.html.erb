@@ -1,0 +1,9 @@
+
+	<tr>
+		<td><%= historico.created_at %></td>
+		<td><%= historico.descricao %></td>
+		<td></td>		
+		<td><%= link_to 'Deletar', [historico.cliente, historico],
+						method: :delete,
+						data: { confirm: 'Excluir histórico?' } %></td>
+	</tr>
