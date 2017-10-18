@@ -1,18 +1,40 @@
 class HistoricosController < ApplicationController
+	def index
+		logger.debug "*************************** INDEX HISTORICO"
+		@evento = Evento.find(params[:evento_id])
+		
+		@historicos = @evento.historicos
+	end
+	
+	
+	def new
+		logger.debug "*************************** NEW HISTORICO"
+		@evento = Evento.find(params[:evento_id])
+		@historico = @evento.historicos.new
+	end
+	
+	def edit
+		logger.debug "*************************** EDIT HISTORICO"
+		@evento = Evento.find(params[:evento_id])
+		@historico = @evento.historicos.find(params[:id])
+	end
+	
 	def create
-		@cliente = Cliente.find(params[:cliente_id])
-		@historico = @cliente.historicos.create(historico_params)
-		redirect_to cliente_path(@cliente)
+		logger.debug "*************************** CREATE HISTORICO"
+		@evento = Evento.find(params[:evento_id])
+		@historico = @evento.historicos.create(historico_params)
+		redirect_to evento_path(@evento)
 	end
 	
 	def destroy
-		@cliente = Cliente.find(params[:cliente_id])
-		@historico = @cliente.historicos.find(params[:id])
+		logger.debug "*************************** DESTROY HISTORICO"
+		@evento = Evento.find(params[:evento_id])
+		@historico = @evento.historicos.find(params[:id])
 		@historico.destroy
-		redirect_to cliente_path(@cliente)
+		redirect_to evento_path(@evento)
 	end
 	
 	private def historico_params
-		params.require(:historico).permit(:descricao)
+		params.require(:historico).permit(:descricao, :cliente_id)
 	end
 end

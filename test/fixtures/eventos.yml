@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cliente: one
+  data_evento: 2017-10-02 10:41:41
+  local_evento: MyText
+  hora_montagem: 2017-10-02 10:41:41
+  hora_desmontagem: 2017-10-02 10:41:41
+  historico: one
+
+two:
+  cliente: two
+  data_evento: 2017-10-02 10:41:41
+  local_evento: MyText
+  hora_montagem: 2017-10-02 10:41:41
+  hora_desmontagem: 2017-10-02 10:41:41
+  historico: two

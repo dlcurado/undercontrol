@@ -3,9 +3,13 @@ Rails.application.routes.draw do
   
 	get 'central/index'
 	
-	root 'central#index'
+	root 'eventos#index'
   
-  	resources :clientes do
-  		resources :historicos
+  	resources :eventos do
+  			resources :historicos
   	end
+  	
+  	resources :clientes do
+  		resources :eventos
+  	end	
 end

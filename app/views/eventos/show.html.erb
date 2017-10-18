@@ -1,0 +1,14 @@
+<h1>Dados do evento</h1>
+
+<p>Cliente: <%= @cliente.nome %></p>
+<p>Data do evento:<%= @evento.data_evento %></p>
+<p>Local do evento:<%= @evento.local_evento %></p>
+
+<%= render @evento.historicos %>
+
+<%= render 'historicos/form' %>
+
+<p><%= link_to 'Listar eventos', eventos_path %></p>
+
+
+  

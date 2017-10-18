@@ -16,6 +16,11 @@ class ClientesController < ApplicationController
 
 	def new
 		@cliente = Cliente.new
+		3.times do
+			evento = @cliente.eventos.build
+			4.times { evento.historicos.build }
+		end
+		
 	end
 
 	def edit

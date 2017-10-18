@@ -1,3 +1,4 @@
 class Historico < ApplicationRecord
-  belongs_to :cliente
+	belongs_to :evento
+	has_one :cliente, through: :evento
 end

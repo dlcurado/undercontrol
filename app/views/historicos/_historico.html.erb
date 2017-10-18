@@ -1,9 +1,9 @@
+<div id='historico_<%= historico.id %>'>
+	<p>
+		<strong>Data registro:</strong> <%= historico.created_at %><br />
+		<strong>Observação:</strong> <%= historico.descricao %><br />
+		<%#= link_to 'Editar', edit_evento_historico_path(historico.evento, historico.id) %>
+		<%#= link_to 'Deletar', [historico.evento, historico], method: :delete, data: { confirm: 'Excluir histórico?' } %>
+	</p>
+</div>
 
-	<tr>
-		<td><%= historico.created_at %></td>
-		<td><%= historico.descricao %></td>
-		<td></td>		
-		<td><%= link_to 'Deletar', [historico.cliente, historico],
-						method: :delete,
-						data: { confirm: 'Excluir histórico?' } %></td>
-	</tr>

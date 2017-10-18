@@ -1,0 +1,7 @@
+<%= form_for([@cliente, @cliente.historicos.build]) do |hist| %>	
+	<p>
+		<%= hist.label :descricao %>
+		<%= hist.text_field :descricao %>
+	</p>
+	<%= hist.submit %>
+<% end %>

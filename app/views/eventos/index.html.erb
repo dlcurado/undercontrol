@@ -1,0 +1,54 @@
+<h1>Eventos</h1>
+
+<table border='1'>
+	<tr>
+		<th>Cliente</td>
+		<th>Data</td>
+		<th>Local</td>
+		<th>Fechada?</th>
+		<th>Proposta</th>
+		<!--th>Histórico</th-->
+		<th>Último Contato em</th>
+		<th>Informações</td>
+		<th>Editar</td>
+		<th>Desativar</td>
+	</tr>
+	
+	<% @eventos.each do |evento| %>
+	<tr>
+		<td><%= evento.cliente.nome %></td>
+		<td>
+			<%= if not evento.data_evento.nil?
+					raw evento.data_evento.to_formatted_s(:short)
+				else
+					raw ''
+				end
+			%>
+		</td>
+		<td><%= evento.local_evento %></td>
+		<td>Não</td>
+		<td>000000</td>
+		<!--td><%#= link_to 'Ver histórico', evento_historicos_path(evento.id) %></td-->
+		<td>
+		<%=
+			if not evento.historicos.last.nil?
+				raw evento.historicos.last.created_at.to_formatted_s(:short)
+				#raw '<td>' + evento.historicos.last.created_at.to_s() + '</td>'
+			else
+				raw ''
+			end
+		%>
+		</td>
+		<td><%= link_to 'Infos', evento_path(evento) %></td>
+		<td><%= link_to 'Editar', edit_evento_path(evento) %></td>
+		<td><%= link_to 'Desativar', evento_path(evento), 
+					method: :delete,
+					data: { confirm: 'Tem certeza que deseja excluir este evento?' }  %></td>
+	</tr>
+	<% end %>
+</table>
+
+<p>
+	<%= link_to 'Adicionar', new_evento_path %>
+
+</p>
