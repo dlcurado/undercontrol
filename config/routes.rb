@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   	end
   	
   	resources :historicos
-  	resources :locais
+  	resources :locals
   	resources :tipo_eventos
   	
 #  	resources :eventos do

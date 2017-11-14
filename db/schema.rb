@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171128211840) do
+ActiveRecord::Schema.define(version: 20171128211841) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,14 +26,15 @@ ActiveRecord::Schema.define(version: 20171128211840) do
   create_table "eventos", force: :cascade do |t|
     t.integer  "cliente_id"
     t.datetime "data_evento"
-    t.text     "local_evento"
     t.datetime "hora_montagem"
     t.datetime "hora_desmontagem"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
     t.integer  "tipo_evento_id"
     t.integer  "evento_status"
+    t.integer  "local_id"
     t.index ["cliente_id"], name: "index_eventos_on_cliente_id", using: :btree
+    t.index ["local_id"], name: "index_eventos_on_local_id", using: :btree
     t.index ["tipo_evento_id"], name: "index_eventos_on_tipo_evento_id", using: :btree
   end
 
@@ -64,6 +65,7 @@ ActiveRecord::Schema.define(version: 20171128211840) do
   end
 
   add_foreign_key "eventos", "clientes"
+  add_foreign_key "eventos", "locals"
   add_foreign_key "eventos", "tipo_eventos"
   add_foreign_key "historicos", "eventos"
 end

@@ -25,7 +25,7 @@
   </p>
  
   <p>
-    <%= form.label :local_evento %><%= form.text_field :local_evento %>
+  	Local do Evento: <%= form.collection_select(:local_id, Local.all, :id, :nome) %>
   </p>
   
   <p>
