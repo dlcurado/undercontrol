@@ -1,9 +1,6 @@
 <div id='historico_<%= historico.id %>'>
 	<p>
-		<strong>Data registro:</strong> <%= historico.created_at %><br />
-		<strong>Observação:</strong> <%= historico.descricao %><br />
-		<%#= link_to 'Editar', edit_evento_historico_path(historico.evento, historico.id) %>
-		<%#= link_to 'Deletar', [historico.evento, historico], method: :delete, data: { confirm: 'Excluir histórico?' } %>
+		<strong>Histórico <%= historico.id %> || </strong> <i>Dia <%= historico.created_at %></i> | <%= historico.descricao %><br />
 	</p>
 </div>
 

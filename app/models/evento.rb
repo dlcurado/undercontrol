@@ -18,4 +18,12 @@ class Evento < ApplicationRecord
 			errors.add(:evento, "Erro de conversão")
 		end
 	end
+	
+	STATUS = {
+		0 => 'Solicitado orçamento', 
+		1 => 'Aguardando retorno do cliente', 
+		2 => 'Em negociação', 
+		3 => 'Cancelada', 
+		4 => 'Fechada'
+	}.freeze
 end

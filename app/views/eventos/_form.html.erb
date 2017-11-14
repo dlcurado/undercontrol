@@ -33,6 +33,10 @@
   </p>
   
   <p>
+  	Status do evento: <%= form.select :evento_status, Evento::STATUS.map{|status| [status[1], status[0]]} %>
+  </p>
+  
+  <p>
     <%= form.label :hora_montagem %><%= form.text_field :hora_montagem %>
   </p>
   

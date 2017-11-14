@@ -66,7 +66,8 @@ class EventosController < ApplicationController
 	end
 	
 	private def params_evento
-		params.require(:evento).permit(:id, :cliente_id, :data_evento, :tipo_evento_id,
-			:hora_montagem, :hora_desmontagem, historicos_attributes: [:id, :descricao, :created_at])
+		params.require(:evento).permit(:id, :cliente_id, :data_evento, :local_evento,
+			:tipo_evento_id, :evento_status, :hora_montagem, :hora_desmontagem, 
+			historicos_attributes: [:id, :descricao, :created_at])
 	end
 end
