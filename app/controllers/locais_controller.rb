@@ -1,17 +1,7 @@
-class EventosController < ApplicationController
+class LocaisController < ApplicationController
 	def index
 		logger.debug "*************************** INDEX"
-		
-		if not params[:cliente_id].nil?
-			@cliente = Cliente.find(params[:cliente_id])
-		end
-
-		if @cliente.nil?
-			@eventos = Evento.all
-		else
-			@eventos = @cliente.eventos
-		end
-		
+		@locais = Local.all
 	end
 	
 	def show
@@ -61,12 +51,9 @@ class EventosController < ApplicationController
 		redirect_to eventos_path
 	end
 	
-	def fazer_follow_up
-		return true
-	end
 	
 	private def params_evento
-		params.require(:evento).permit(:id, :cliente_id, :data_evento, :tipo_evento_id,
+		params.require(:evento).permit(:id, :cliente_id, :data_evento, :local_evento,
 			:hora_montagem, :hora_desmontagem, historicos_attributes: [:id, :descricao, :created_at])
 	end
 end

@@ -1,9 +1,9 @@
 class Evento < ApplicationRecord
 	belongs_to :cliente
-	
 	has_many :historicos, :dependent => :destroy
 	accepts_nested_attributes_for :historicos, :allow_destroy => true
 	#:reject_if => lambda { |a| a[:content].blank? },
+	belongs_to :tipo_evento
 	
 	validates :data_evento, presence: true
 	validates :local_evento, presence: true

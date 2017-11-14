@@ -16,33 +16,33 @@
   <% end %>
 
 
-	<p>
-	<%= form.collection_select(:cliente_id, Cliente.all, :id, :nome) %>
-	</p>
+  <p>
+  	Cliente: <%= form.collection_select(:cliente_id, Cliente.all, :id, :nome) %>
+  </p>
 	
   <p>
-    <%= form.label :data_evento %><br>
-    <%= form.text_field :data_evento %>
+    <%= form.label :data_evento %><%= form.text_field :data_evento %>
   </p>
  
   <p>
-    <%= form.label :local_evento %><br>
-    <%= form.text_field :local_evento %>
+    <%= form.label :local_evento %><%= form.text_field :local_evento %>
   </p>
   
   <p>
-    <%= form.label :hora_montagem %><br>
-    <%= form.text_field :hora_montagem %>
+  	Tipo de Evento: <%= form.collection_select(:tipo_evento_id, TipoEvento.all, :id, :descricao) %>
   </p>
   
   <p>
-    <%= form.label :hora_desmontagem %><br>
-    <%= form.text_field :hora_desmontagem %>
+    <%= form.label :hora_montagem %><%= form.text_field :hora_montagem %>
   </p>
   
-  <%= form.fields_for :historicos do |hist| %>
-  	<%= render 'historicos_fields', :historico => hist %>
-  <% end %>
+  <p>
+    <%= form.label :hora_desmontagem %><%= form.text_field :hora_desmontagem %>
+  </p>
+  
+  <%#= form.fields_for :historicos do |hist| %>
+  	<%#= render 'historicos_fields', :historico => hist %>
+  <%# end %>
   
   <p>
     <%= form.submit %>

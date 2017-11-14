@@ -1,0 +1,28 @@
+<h1>Histórico de contatos</h1>
+
+<!--table border='1'>
+	<tr>
+		<th>Data do contato</td>
+		<th>Descrição</td>
+	</tr>
+	
+	<% @historicos.each do |historico| %>
+		<tr>
+			<td><%= tipo.descricao %></td>
+			<td><%= tipo.id %></td>
+			<td><%= link_to 'Editar', edit_tipo_evento_path(tipo) %></td>
+			<td><%= link_to 'Desativar', tipo_evento_path(tipo), 
+					method: :delete,
+					data: { confirm: 'Tem certeza que deseja excluir este tipo de evento?' }  %></td>
+		</tr>
+	<% end %>
+</table-->
+
+<%= render @evento.historicos %>
+
+<%= render 'historicos/form' %>
+
+<p>
+	<%= link_to 'Adicionar', new_tipo_evento_path %>
+
+</p>

@@ -5,11 +5,21 @@ Rails.application.routes.draw do
 	
 	root 'eventos#index'
   
+  
+  	resources :clientes
   	resources :eventos do
-  			resources :historicos
+  		resources :historicos
   	end
   	
-  	resources :clientes do
-  		resources :eventos
-  	end	
+  	resources :historicos
+  	resources :locais
+  	resources :tipo_eventos
+  	
+#  	resources :eventos do
+#  		resources :historicos
+#  	end
+#  	
+#  	resources :clientes do
+#  		resources :eventos
+#  	end	
 end

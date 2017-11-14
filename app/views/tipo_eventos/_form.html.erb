@@ -1,0 +1,7 @@
+<%= form_for([@tipoEvento]) do |tipo| %>
+		<p>
+			<%= tipo.label :descricao %>
+			<%= tipo.text_field :descricao %>
+		</p>
+	<%= tipo.submit %>
+<% end %>

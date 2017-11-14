@@ -1,0 +1,34 @@
+<h1>Locais de realização de eventos</h1>
+
+<table border='1'>
+	<tr>
+		<th>Nome</td>
+		<th>Endereço</td>
+		<th>Cidade</td>
+		<th>Estado</th>
+		<th>Horario de montagem</th>
+		<th>Horario de desmontagem</th>
+		<th>Editar</td>
+		<th>Desativar</td>
+	</tr>
+	
+	<% @locais.each do |local| %>
+		<tr>
+			<td><%= local.nome %></td>
+			<td><%= local.endereco %></td>
+			<td><%= local.cidade %></td>
+			<td><%= local.estado %></td>
+			<td><%= local.horario_montagem %></td>
+			<td><%= local.horario_desmontagem %></td>
+			<td><%= link_to 'Editar', edit_local_path(local) %></td>
+			<td><%= link_to 'Desativar', local_path(local), 
+					method: :delete,
+					data: { confirm: 'Tem certeza que deseja excluir este local?' }  %></td>
+		</tr>
+	<% end %>
+</table>
+
+<p>
+	<%= link_to 'Adicionar', new_local_path %>
+
+</p>

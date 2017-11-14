@@ -5,9 +5,10 @@
 		<th>Cliente</td>
 		<th>Data</td>
 		<th>Local</td>
+		<th>Tipo de Evento</td>
 		<th>Fechada?</th>
 		<th>Proposta</th>
-		<!--th>Histórico</th-->
+		<th>Histórico</th>
 		<th>Último Contato em</th>
 		<th>Informações</td>
 		<th>Editar</td>
@@ -26,9 +27,10 @@
 			%>
 		</td>
 		<td><%= evento.local_evento %></td>
+		<td><%= evento.tipo_evento.descricao %></td>
 		<td>Não</td>
 		<td>000000</td>
-		<!--td><%#= link_to 'Ver histórico', evento_historicos_path(evento.id) %></td-->
+		<td><%= link_to 'Ver histórico', evento_historicos_path(evento.id) %></td>
 		<td>
 		<%=
 			if not evento.historicos.last.nil?

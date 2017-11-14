@@ -1,0 +1,28 @@
+<h1>Locais de realização de eventos</h1>
+
+<table border='1'>
+	<tr>
+		<th>ID</td>
+		<th>Descrição</td>
+		<th>Editar</td>
+		<th>Desativar</td>
+	</tr>
+	
+	<% @tiposEvento.each do |tipo| %>
+		<tr>
+			<td><%= tipo.descricao %></td>
+			<td><%= tipo.id %></td>
+			<td><%= link_to 'Editar', edit_tipo_evento_path(tipo) %></td>
+			<td><%= link_to 'Desativar', tipo_evento_path(tipo), 
+					method: :delete,
+					data: { confirm: 'Tem certeza que deseja excluir este tipo de evento?' }  %></td>
+		</tr>
+	<% end %>
+</table>
+
+<%= render 'tipo_eventos/form' %>
+
+<p>
+	<%= link_to 'Adicionar', new_tipo_evento_path %>
+
+</p>
