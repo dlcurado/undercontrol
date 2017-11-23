@@ -1,14 +1,24 @@
-<h1>Dados do evento</h1>
+  <h1>
+	Detalhes do local: <%= @local.nome %>
+  </h1>
+  
+  <p>
+    <strong>Pessoa de contato:</strong> <%= @local.nome_contato %><br />
+    <strong>E-mail:</strong> <%= @local.email %><br />
+    <strong>Telefone:</strong> <%= @local.telefone %><br />
+  </p>
+  
+  <p>
+    <strong>Endereço:</strong> <%= @local.endereco %><br />
+    <strong>Cidade:</strong> <%= @local.cidade %><br /> 
+    <strong>Estado:</strong> <%= @local.estado %><br />
+    <strong>Horario de montagem:</strong> <%= @local.horario_montagem %><br />
+    <strong>Horario de desmontagem:</strong> <%= @local.horario_desmontagem %>
+  </p>
 
-<p>Cliente: <%= @cliente.nome %></p>
-<p>Data do evento:<%= @evento.data_evento %></p>
-<p>Local do evento:<%= @evento.local_evento %></p>
 
-<%= render @evento.historicos %>
 
-<%= render 'historicos/form' %>
-
-<p><%= link_to 'Listar eventos', eventos_path %></p>
+<p><%= link_to 'Listar locais', locals_path %></p>
 
 
   

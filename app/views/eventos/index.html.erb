@@ -1,5 +1,11 @@
 <h1>Eventos</h1>
 
+
+<%= form_for(eventos_path, method: "get") do %>
+	<%= select_tag(:status_id, options_for_select(Evento::STATUS.collect{|item| [item.k, item.v]}) ) %>
+	<%= submit_tag "Filtrar", name: nil %>
+<% end %>
+
 <table border='1'>
 	<tr>
 		<th>Cliente</td>
@@ -10,7 +16,6 @@
 		<th>Proposta</th>
 		<th>Último Contato em</th>
 		<th>Histórico</th>
-		<th>Informações</td>
 		<th>Editar</td>
 		<th>Desativar</td>
 	</tr>
@@ -41,7 +46,6 @@
 		%>
 		</td>
 		<td><%= link_to 'Ver histórico', evento_path(evento) %></td>
-		<td><%= link_to 'Infos', evento_path(evento) %></td>
 		<td><%= link_to 'Editar', edit_evento_path(evento) %></td>
 		<td><%= link_to 'Desativar', evento_path(evento), 
 					method: :delete,

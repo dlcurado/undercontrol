@@ -1,14 +1,14 @@
-<%= form_for([@locai]) do |form| %>	
+<%= form_for([@local]) do |form| %>	
 
-  <% if @locai.errors.any? %>
+  <% if @local.errors.any? %>
     <div id="error_explanation">
       <h2>
         Nao foi possivel criar o local.</br>
-        Total de erros: <%= @locai.errors.count %></br>
+        Total de erros: <%= @local.errors.count %></br>
         Veja:	
       </h2>
       <ul>
-        <% @locai.errors.full_messages.each do |msg| %>
+        <% @local.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
         <% end %>
       </ul>
@@ -16,37 +16,21 @@
   <% end %>
 
   <p>
-    <%= form.label :nome %><br />
-    <%= form.text_field :nome %>
+    <%= form.label :nome %> <%= form.text_field :nome %>
   </p>
-  
-  <p>
-    <%= form.label :endereco %><br />
-    <%= form.text_field :endereco %>
-  </p>
-  
-  
-  <p>
-    <%= form.label :cidade %><br />
-    <%= form.text_field :cidade %>
-  </p>
-  
   
   <p> 
-    <%= form.label :estado %><br />
-    <%= form.text_field :estado %>
+    <%= form.label :nome_contato %> <%= form.text_field :nome_contato %><br />
+    <%= form.label :telefone %> <%= form.text_field :telefone %><br />
+    <%= form.label :email %> <%= form.text_field :email %><br />
   </p>
   
-  
   <p>
-    <%= form.label :horario_montagem %><br />
-    <%= form.text_field :horario_montagem %>
-  </p>
-  
-  
-  <p>
-    <%= form.label :horario_desmontagem %><br>
-    <%= form.text_field :horario_desmontagem %>
+    <%= form.label :endereco %>  <%= form.text_field :endereco %><br />
+    <%= form.label :cidade %> <%= form.text_field :cidade %><br />
+    <%= form.label :estado %> <%= form.text_field :estado %><br />
+    <%= form.label :horario_montagem %> <%= form.text_field :horario_montagem %><br />
+    <%= form.label :horario_desmontagem %> <%= form.text_field :horario_desmontagem %>
   </p>
 
   <p>

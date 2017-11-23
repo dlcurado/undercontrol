@@ -11,7 +11,7 @@ class LocalsController < ApplicationController
 	
 	def new
 		logger.debug "*************************** NEW"
-		@locai = Local.new
+		@local = Local.new
 	end
 	
 	def create
@@ -50,6 +50,7 @@ class LocalsController < ApplicationController
 	
 	
 	private def params_local
-		params.require(:local).permit(:nome, :endereco, :cidade, :estado, :horario_montagem, :horario_desmontagem)
+		params.require(:local).permit(:nome, :nome_contato, :telefone, :email, :endereco, 
+		:cidade, :estado, :horario_montagem, :horario_desmontagem)
 	end
 end
