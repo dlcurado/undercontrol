@@ -2,7 +2,7 @@
 
 
 <%= form_for(eventos_path, method: "get") do %>
-	<%= select_tag(:status_id, options_for_select(Evento::STATUS.collect{|item| [item.k, item.v]}) ) %>
+	<%= select_tag(:status_id, options_for_select(Evento::STATUS.each, :last, :first) ) %>
 	<%= submit_tag "Filtrar", name: nil %>
 <% end %>
 
