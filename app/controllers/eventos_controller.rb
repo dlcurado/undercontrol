@@ -2,14 +2,21 @@ class EventosController < ApplicationController
 	def index
 		logger.debug "*************************** INDEX"
 		
-		if not params[:cliente_id].nil?
-			@cliente = Cliente.find(params[:cliente_id])
-		end
+		filtro = []
 
-		if @cliente.nil?
-			@eventos = Evento.all
-		else
+		if params.has_key?("commit")
+			logger.debug params[:commit]
+			if params[:evento_status].present?
+				id = params[:evento_status]
+				filtro << ["evento_status = #{id.to_i}"]
+			end
+
+			@eventos = Evento.all.where(filtro.join(" AND ")).order("data_evento DESC")
+		elsif params.has_key?("cliente_id")
+			@cliente = Cliente.find(params[:cliente_id])
 			@eventos = @cliente.eventos
+		else
+			@eventos = Evento.all.order("data_evento ASC")
 		end
 		
 	end
@@ -17,7 +24,6 @@ class EventosController < ApplicationController
 	def show
 		logger.debug "*************************** SHOW"
 		@evento = Evento.find(params[:id])
-		@cliente = @evento.cliente
 	end
 	
 	def new

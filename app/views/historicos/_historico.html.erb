@@ -1,6 +1,9 @@
 <div id='historico_<%= historico.id %>'>
 	<p>
-		<strong>Histórico <%= historico.id %> || </strong> <i>Dia <%= historico.created_at %></i> | <%= historico.descricao %><br />
+		<strong>Histórico <%= historico.id %> || </strong>
+		<i>Dia <%= historico.created_at %></i> 
+		| <%= historico.descricao %>
+		| <%= historico.evento.cliente.nome %>
 	</p>
 </div>
 

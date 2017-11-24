@@ -1,11 +1,30 @@
 class HistoricosController < ApplicationController
 	def index
-		logger.debug "*************************** INDEX HISTORICO"
-		@evento = Evento.find(params[:evento_id])
 		
-		@historicos = @evento.historicos
+		if params[:evento_id].present?
+			logger.debug "*************************** INDEX HISTORICO"
+			@evento = Evento.find(params[:evento_id])
+		
+			@historicos = @evento.historicos
+		else
+			@historicos = Historico.all
+		end
+			
 	end
 	
+	def show
+		
+		if params[:id].present?
+			@historicos = Historico.find(params[:id])
+		elsif params[:evento_id].present?
+			logger.debug "*************************** INDEX HISTORICO"
+			@evento = Evento.find(params[:evento_id])
+			@historicos = @evento.historicos
+		else
+			@historicos = Historico.all
+		end
+			
+	end
 	
 	def new
 		logger.debug "*************************** NEW HISTORICO"

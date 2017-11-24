@@ -12,7 +12,10 @@ class Evento < ApplicationRecord
 	validates :hora_desmontagem, presence: true
 	
 	def data_evento_is_data
-		errors.add(:data_evento, "Não pode ser nulo!") if :data_evento.nil?
+		#if :data_evento.nil?
+		#	errors.add(:data_evento, "Não pode ser nulo!") 
+		#end
+		
 		begin
 			Date.parse(:evento.data_evento)
 		rescue

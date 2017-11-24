@@ -2,9 +2,12 @@
 
 
 <%= form_for(eventos_path, method: "get") do %>
-	<%= select_tag(:status_id, options_for_select(Evento::STATUS.each, :last, :first) ) %>
-	<%= submit_tag "Filtrar", name: nil %>
+	<%= select_tag(:evento_status, options_from_collection_for_select(Evento::STATUS, :first, :last), {prompt: 'Selecionar'} ) %>
+	<%= submit_tag "Filtrar" %>
 <% end %>
+
+<br />
+<p><%= link_to 'Registrar novo evento', new_evento_path %></p>
 
 <table border='1'>
 	<tr>
@@ -19,32 +22,17 @@
 		<th>Editar</td>
 		<th>Desativar</td>
 	</tr>
+
 	
 	<% @eventos.each do |evento| %>
-	<tr>
+	<tr bgcolor="<%= evento.cor_fundo %>">
 		<td><%= evento.cliente.nome %></td>
-		<td>
-			<%= if not evento.data_evento.nil?
-					raw evento.data_evento.to_formatted_s(:short)
-				else
-					raw ''
-				end
-			%>
-		</td>
+		<td><%= evento.data %></td>
 		<td><%= evento.local.nome %></td>
 		<td><%= evento.tipo_evento.descricao %></td>
 		<td><%= Evento::STATUS[evento.evento_status] %></td>
 		<td>000000</td>
-		<td>
-		<%=
-			if not evento.historicos.last.nil?
-				raw evento.historicos.last.created_at.to_formatted_s(:short)
-				#raw '<td>' + evento.historicos.last.created_at.to_s() + '</td>'
-			else
-				raw ''
-			end
-		%>
-		</td>
+		<td><%= evento.data_ultimo_contato%></td>
 		<td><%= link_to 'Ver histórico', evento_path(evento) %></td>
 		<td><%= link_to 'Editar', edit_evento_path(evento) %></td>
 		<td><%= link_to 'Desativar', evento_path(evento), 
@@ -54,7 +42,4 @@
 	<% end %>
 </table>
 
-<p>
-	<%= link_to 'Adicionar', new_evento_path %>
-
-</p>
+<p><%= link_to 'Registrar novo evento', new_evento_path %></p>
