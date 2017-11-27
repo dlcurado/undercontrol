@@ -58,6 +58,13 @@ development:
 test:
   <<: *default
   database: djsonorizacao_test
+  adapter: postgresql
+  encoding: unicode
+  database: <%= ENV['RDS_DB_NAME'] >
+  username: <%= ENV['RDS_DB_USERNAME'] >
+  password: <%= ENV['RDS_DB_PASSWORD'] >
+  host: <%= ENV['RDS_HOSTNAME'] >
+  port: <%= ENV['RDS_PORT'] >
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -79,7 +86,7 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
+  <<: *test
   database: djsonorizacao_production
-  username: UnderControl
-  password: <%= ENV['UNDERCONTROL_DATABASE_PASSWORD'] %>
+  #username: UnderControl
+  #password: <%= ENV['UNDERCONTROL_DATABASE_PASSWORD'] %>
