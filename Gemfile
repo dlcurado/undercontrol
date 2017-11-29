@@ -60,3 +60,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Decorator GEMA 'Draper'
 gem 'active_decorator'
+
+gem 'jquery-ui-rails'

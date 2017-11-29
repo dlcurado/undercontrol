@@ -1,10 +1,16 @@
-<h1>Dados do cliente</h1>
+<section class="wrapper site-min-height">
+	<h3><i class="fa fa-angle-right"></i> Dados do cliente</h3>
+	<div class="row mt">
+		<div class="col-lg-12">
+		
+			<p><%= @cliente.nome %></p>
+			<p><%= @cliente.telefone %></p>
+			<p><%= @cliente.email %></p>
 
-<p><%= @cliente.nome %></p>
-<p><%= @cliente.telefone %></p>
-<p><%= @cliente.email %></p>
 
+			<p><%= link_to 'Listar clientes', clientes_path %></p>
 
-<p><%= link_to 'Listar clientes', clientes_path %></p>
+  		</div>
+	</div>
 
-  
+</section><! --/wrapper -->

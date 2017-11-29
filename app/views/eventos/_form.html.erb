@@ -21,9 +21,12 @@
   </p>
 	
   <p>
-    <%= form.label :data_evento %><%= form.text_field :data_evento %>
+    <%= form.label :data_evento %><%= form.text_field :data_evento, class: 'datepicker' %>
   </p>
  
+ <p>
+    Nova Data<input type='text' id='datepicker' class='hasDatepicker' />
+  </p>
   <p>
   	Local do Evento: <%= form.collection_select(:local_id, Local.all, :id, :nome) %>
   </p>

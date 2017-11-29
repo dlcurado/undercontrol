@@ -1,45 +1,51 @@
-<h1>Eventos</h1>
+<section class="wrapper site-min-height">
+	<h3><i class="fa fa-angle-right"></i> Eventos</h3>
+	<div class="row mt">
+		<div class="col-lg-12">
+			<%= form_for(eventos_path, method: "get") do %>
+				<%= select_tag(:evento_status, options_from_collection_for_select(Evento::STATUS, :first, :last), {prompt: 'Selecionar'} ) %>
+				<%= submit_tag "Filtrar" %>
+			<% end %>
 
+			<br />
 
-<%= form_for(eventos_path, method: "get") do %>
-	<%= select_tag(:evento_status, options_from_collection_for_select(Evento::STATUS, :first, :last), {prompt: 'Selecionar'} ) %>
-	<%= submit_tag "Filtrar" %>
-<% end %>
+			<p><%= link_to 'Registrar novo evento', new_evento_path %></p>
 
-<br />
-<p><%= link_to 'Registrar novo evento', new_evento_path %></p>
-
-<table border='1'>
-	<tr>
-		<th>Cliente</td>
-		<th>Data</td>
-		<th>Local</td>
-		<th>Tipo de Evento</td>
-		<th>Status</th>
-		<th>Proposta</th>
-		<th>Último Contato em</th>
-		<th>Histórico</th>
-		<th>Editar</td>
-		<th>Desativar</td>
-	</tr>
+			<table border='1'>
+			<tr>
+				<th>Cliente</td>
+				<th>Data</td>
+				<th>Local</td>
+				<th>Tipo de Evento</td>
+				<th>Status</th>
+				<th>Proposta</th>
+				<th>Último Contato em</th>
+				<th>Histórico</th>
+				<th>Editar</td>
+				<th>Desativar</td>
+			</tr>
 
 	
-	<% @eventos.each do |evento| %>
-	<tr bgcolor="<%= evento.cor_fundo %>">
-		<td><%= evento.cliente.nome %></td>
-		<td><%= evento.data %></td>
-		<td><%= evento.local.nome %></td>
-		<td><%= evento.tipo_evento.descricao %></td>
-		<td><%= Evento::STATUS[evento.evento_status] %></td>
-		<td>000000</td>
-		<td><%= evento.data_ultimo_contato%></td>
-		<td><%= link_to 'Ver histórico', evento_path(evento) %></td>
-		<td><%= link_to 'Editar', edit_evento_path(evento) %></td>
-		<td><%= link_to 'Desativar', evento_path(evento), 
-					method: :delete,
-					data: { confirm: 'Tem certeza que deseja excluir este evento?' }  %></td>
-	</tr>
-	<% end %>
-</table>
+			<% @eventos.each do |evento| %>
+			<tr bgcolor="<%= evento.cor_fundo %>">
+				<td><%= evento.cliente.nome %></td>
+				<td><%= evento.data %></td>
+				<td><%= evento.local.nome %></td>
+				<td><%= evento.tipo_evento.descricao %></td>
+				<td><%= Evento::STATUS[evento.evento_status] %></td>
+				<td>000000</td>
+				<td><%= evento.data_ultimo_contato%></td>
+				<td><%= link_to 'Ver histórico', evento_path(evento) %></td>
+				<td><%= link_to 'Editar', edit_evento_path(evento) %></td>
+				<td><%= link_to 'Desativar', evento_path(evento), 
+						method: :delete,
+						data: { confirm: 'Tem certeza que deseja excluir este evento?' }  %></td>
+			</tr>
+			<% end %>
+			</table>
 
-<p><%= link_to 'Registrar novo evento', new_evento_path %></p>
+			<p><%= link_to 'Registrar novo evento', new_evento_path %></p>
+		</div>
+	</div>
+
+</section><! --/wrapper -->

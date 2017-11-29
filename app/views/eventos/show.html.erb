@@ -1,9 +1,15 @@
-<h1>Dados do evento</h1>
+<section class="wrapper site-min-height">
+	<h3><i class="fa fa-angle-right"></i> Dados sobre o evento</h3>
+	<div class="row mt">
+		<div class="col-lg-12">
+			<p>Cliente: <%= @evento.cliente.nome %></p>
+			<p>Data do evento:<%= @evento.data_evento %></p>
+			<p>Local do evento:<%= @evento.local.nome %></p>
 
-<p>Cliente: <%= @evento.cliente.nome %></p>
-<p>Data do evento:<%= @evento.data_evento %></p>
-<p>Local do evento:<%= @evento.local.nome %></p>
+			<%= render @evento.historicos %>
 
-<%= render @evento.historicos %>
+			<%= render 'historicos/form' %>
+		</div>
+	</div>
 
-<%= render 'historicos/form' %>
+</section><! --/wrapper -->

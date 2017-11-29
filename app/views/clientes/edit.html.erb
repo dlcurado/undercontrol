@@ -1,38 +1,42 @@
-<h1>Editar informacoes do usuario</h1>
+<section class="wrapper site-min-height">
+	<h3><i class="fa fa-angle-right"></i> Editar dados do cliente</h3>
+	<div class="row mt">
+		<div class="col-lg-12">
+			<%= form_for :cliente, url: cliente_path(@cliente), method: :patch do |form| %>
 
-<%= form_for :cliente, url: cliente_path(@cliente), method: :patch do |form| %>
-
-  <% if @cliente.errors.any? %>
-    <div id="error_explanation">
-      <h2>
-        Nao foi possivel atualizar o cliente.</br>
-        Corrija os erros abaixo:	
-      </h2>
-      <ul>
-        <% @cliente.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+			  <% if @cliente.errors.any? %>
+			    <div id="error_explanation">
+			      <h2>
+			        Nao foi possivel atualizar o cliente.</br>
+			        Corrija os erros abaixo:	
+			      </h2>
+			      <ul>
+			        <% @cliente.errors.full_messages.each do |msg| %>
+			          <li><%= msg %></li>
+			        <% end %>
+			      </ul>
+			    </div>
+			  <% end %>
   
-  <p>
-    <%= form.label :nome %><br>
-    <%= form.text_field :nome %>
-  </p>
+			  <p>
+			    <%= form.label :nome %><br>
+			    <%= form.text_field :nome %>
+			  </p>
  
-  <p>
-    <%= form.label :telefone %><br>
-    <%= form.text_area :telefone %>
-  </p>
+			  <p>
+			    <%= form.label :telefone %><br>
+			    <%= form.text_area :telefone %>
+			  </p>
  
- <p>
-    <%= form.label :email %><br>
-    <%= form.text_area :email %>
-  </p>
+			  <p>
+			    <%= form.label :email %><br>
+			    <%= form.text_area :email %>
+			  </p>
   
-  <p>
-    <%= form.submit "Salvar" %>
-  </p>
+			  <p><%= form.submit "Salvar" %></p>
 
-<% end %>
+			<% end %>
+		</div>
+	</div>
+
+</section><! --/wrapper -->

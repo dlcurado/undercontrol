@@ -1,31 +1,39 @@
-<h1>Locais de realização de eventos</h1>
+<section class="wrapper site-min-height">
+	<h3><i class="fa fa-angle-right"></i> Locais de realização de eventos</h3>
+	<div class="row mt">
+		<div class="col-lg-12">
 
-<p><%= link_to 'Cadastrar', new_local_path %></p>
+			<p><%= link_to 'Cadastrar', new_local_path %></p>
 
-<table border='1'>
-	<tr>
-		<th>Nome</td>
-		<th>Nome do Contato</th>
-		<th>E-mail</th>
-		<th>Telefone</th>
-		<th>Detalhes</td>
-		<th>Editar</td>
-		<th>Desativar</td>
-	</tr>
+			<table border='1'>
+				<tr>
+					<th>Nome</td>
+					<th>Nome do Contato</th>
+					<th>E-mail</th>
+					<th>Telefone</th>
+					<th>Detalhes</td>
+					<th>Editar</td>
+					<th>Desativar</td>
+				</tr>
 	
-	<% @locais.each do |local| %>
-		<tr>
-			<td><%= local.nome %></td>
-			<td><%= local.nome_contato %></td>
-			<td><%= local.email %></td>
-			<td><%= local.telefone %></td>
-			<td><%= link_to 'Ver', local_path(local) %></td>
-			<td><%= link_to 'Editar', edit_local_path(local) %></td>
-			<td><%= link_to 'Desativar', local_path(local), 
-					method: :delete,
-					data: { confirm: 'Tem certeza que deseja excluir este local?' }  %></td>
-		</tr>
-	<% end %>
-</table>
+				<% @locais.each do |local| %>
+					<tr>
+						<td><%= local.nome %></td>
+						<td><%= local.nome_contato %></td>
+						<td><%= local.email %></td>
+						<td><%= local.telefone %></td>
+						<td><%= link_to 'Ver', local_path(local) %></td>
+						<td><%= link_to 'Editar', edit_local_path(local) %></td>
+						<td><%= link_to 'Desativar', local_path(local), 
+								method: :delete,
+								data: { confirm: 'Tem certeza que deseja excluir este local?' }  %></td>
+					</tr>
+				<% end %>
+			</table>
 
-<p><%= link_to 'Cadastrar', new_local_path %></p>
+			<p><%= link_to 'Cadastrar', new_local_path %></p>
+
+		</div>
+	</div>
+
+</section><! --/wrapper -->

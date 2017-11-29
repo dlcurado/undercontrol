@@ -3,9 +3,10 @@ Rails.application.routes.draw do
   
 	get 'central/index'
 	
-	root 'eventos#index'
+	root 'central#index'
   
-  
+  	resources :central
+  	
   	resources :clientes do
   		resources :eventos
   	end
