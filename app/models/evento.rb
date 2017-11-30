@@ -8,6 +8,8 @@ class Evento < ApplicationRecord
 	
 	
 	validates :data_evento, presence: true
+	validates :hora_montagem, presence: true
+	validates :hora_desmontagem, presence: true
 	
 	def data_evento_is_data
 		#if :data_evento.nil?
