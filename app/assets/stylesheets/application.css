@@ -11,10 +11,10 @@
  * It is generally better to create a new file per style scope.
  *
  *= require jquery-ui
+ *= require custom/bootstrap
+ *= require custom/font-awesome
+ *= require custom/style
+ *= require custom/style-responsive
  *= require_tree .
  *= require_self
  */
-
-#menu {
-	width: 200px;
-}
