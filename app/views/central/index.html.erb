@@ -1,146 +1,156 @@
 <section class="wrapper">
-	<div class="row">
-	
-	
-	
-    	<div class="col-lg-9 main-chart">
-        
-        	
-					
-        </div><!-- /col-lg-9 END SECTION MIDDLE -->
-                  
-                  
-                  <!-- **********************************************************************************************************************************************************
-                  RIGHT SIDEBAR CONTENT
-                  *********************************************************************************************************************************************************** -->
-                  <div class="col-lg-3 ds">
-                    <!--COMPLETED ACTIONS DONUTS CHART-->
-					   <h3>NOTIFICAÇÕES</h3>
-                                        
-                      <!-- First Action -->
-                      <div class="desc">
-                      	<div class="thumb">
-                      		<span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-                      	</div>
-                      	<div class="details">
-                      		<p><muted>2 Minutes Ago</muted><br/>
-                      		   <a href="#">Daniel Curado</a> estará atualizando a versão em breve.<br/>
-                      		</p>
-                      	</div>
-                      </div>
-                      
-                      
-                      <!-- ELEMENTOS NÃO UTILIZADO -->
-                      <!-- Second Action -->
-                      <div class="desc invisible">
-                      	<div class="thumb">
-                      		<span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-                      	</div>
-                      	<div class="details">
-                      		<p><muted>3 Hours Ago</muted><br/>
-                      		   <a href="#">Diana Kennedy</a> purchased a year subscription.<br/>
-                      		</p>
-                      	</div>
-                      </div>
-                      <!-- Third Action -->
-                      <div class="desc hidden">
-                      	<div class="thumb">
-                      		<span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-                      	</div>
-                      	<div class="details">
-                      		<p><muted>7 Hours Ago</muted><br/>
-                      		   <a href="#">Brandon Page</a> purchased a year subscription.<br/>
-                      		</p>
-                      	</div>
-                      </div>
-                      <!-- Fourth Action -->
-                      <div class="desc hidden">
-                      	<div class="thumb">
-                      		<span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-                      	</div>
-                      	<div class="details">
-                      		<p><muted>11 Hours Ago</muted><br/>
-                      		   <a href="#">Mark Twain</a> commented your post.<br/>
-                      		</p>
-                      	</div>
-                      </div>
-                      <!-- Fifth Action -->
-                      <div class="desc hidden">
-                      	<div class="thumb">
-                      		<span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-                      	</div>
-                      	<div class="details">
-                      		<p><muted>18 Hours Ago</muted><br/>
-                      		   <a href="#">Daniel Pratt</a> purchased a wallet in your store.<br/>
-                      		</p>
-                      	</div>
-                      </div>
-                      <!-- ELEMENTOS NÃO UTILIZADO -->
+     <div class="row mt">
+	   <aside class="col-lg-3 mt hidden">
+		   <h4><i class="fa fa-angle-right"></i> Draggable Events</h4>
+		   <div id="external-events">
+			   <div class="external-event label label-theme">My Event 1</div>
+			   <div class="external-event label label-success">My Event 2</div>
+			   <div class="external-event label label-info">My Event 3</div>
+			   <div class="external-event label label-warning">My Event 4</div>
+			   <div class="external-event label label-danger">My Event 5</div>
+			   <div class="external-event label label-default">My Event 6</div>
+			   <div class="external-event label label-theme">My Event 7</div>
+			   <div class="external-event label label-info">My Event 8</div>
+			   <div class="external-event label label-success">My Event 9</div>
+			   <p class="drop-after">
+				   <input type="checkbox" id="drop-remove">
+				   Remove After Drop
+			   </p>
+		   </div>
+	   </aside>
+	   <aside class="col-lg-9 mt">
+		   <section class="panel">
+			   <div class="panel-body">
+				   <div id="calendar" class="has-toolbar"></div>
+			   </div>
+		   </section>
+	   </aside>
+            
+	   <div class="col-lg-3 ds">
+		  <!--COMPLETED ACTIONS DONUTS CHART-->
+		  <h3>NOTIFICAÇÕES</h3>
+			  
+		  <!-- First Action -->
+		  <div class="desc">
+			<div class="thumb">
+				<span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
+			</div>
+			<div class="details">
+				<p><muted>2 Minutes Ago</muted><br/>
+				   <a href="#">Daniel Curado</a> estará atualizando a versão em breve.<br/>
+				</p>
+			</div>
+		  </div>
 
-                      <!-- USERS ONLINE SECTION -->
-					  <h3>ON-LINE</h3>
-                      <!-- First Member -->
-                      <div class="desc">
-                      	<div class="thumb">
-                      		<%= image_tag "avatar/1.jpg", class: "img-circle", width: "35px", height: "35px", align: "" %>
-                      	</div>
-                      	<div class="details">
-                      		<p><a href="#">DIVYA MANIAN</a><br/>
-                      		   <muted>Available</muted>
-                      		</p>
-                      	</div>
-                      </div>
-                      <!-- Second Member -->
-                      <div class="desc">
-                      	<div class="thumb">
-                      	    <%= image_tag "avatar/2.jpg", class: "img-circle", width: "35px", height: "35px", align: "" %>
-                      	</div>
-                      	<div class="details">
-                      		<p><a href="#">DJ SHERMAN</a><br/>
-                      		   <muted>I am Busy</muted>
-                      		</p>
-                      	</div>
-                      </div>
-                      <!-- Third Member -->
-                      <div class="desc">
-                      	<div class="thumb">
-                      		<%= image_tag "avatar/3.jpg", class: "img-circle", width: "35px", height: "35px", align: "" %>
-                      	</div>
-                      	<div class="details">
-                      		<p><a href="#">DAN ROGERS</a><br/>
-                      		   <muted>Available</muted>
-                      		</p>
-                      	</div>
-                      </div>
-                      
-                      <!-- ELEMENTOS NÃO UTILIZADO -->
-                      <!-- Fourth Member -->
-                      <div class="desc hidden">
-                      	<div class="thumb">
-                      		<%= image_tag "avatar/4.jpg", class: "img-circle", width: "35px", height: "35px", align: "" %>
-                      	</div>
-                      	<div class="details">
-                      		<p><a href="#">Zac Sniders</a><br/>
-                      		   <muted>Available</muted>
-                      		</p>
-                      	</div>
-                      </div>
-                      <!-- Fifth Member -->
-                      <div class="desc hidden">
-                      	<div class="thumb">
-                      		<%= image_tag "avatar/5.jpg", class: "img-circle", width: "35px", height: "35px", align: "" %>
-                      	</div>
-                      	<div class="details">
-                      		<p><a href="#">Marcel Newman</a><br/>
-                      		   <muted>Available</muted>
-                      		</p>
-                      	</div>
-                      </div>
-					  <!-- ELEMENTOS NÃO UTILIZADO -->
 
-                       
-                  </div><!-- /col-lg-3 -->
-                  
-                  
-    </div><! --/row -->
+		  <!-- ELEMENTOS NÃO UTILIZADO -->
+		  <!-- Second Action -->
+		  <div class="desc invisible">
+			<div class="thumb">
+				<span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
+			</div>
+			<div class="details">
+				<p><muted>3 Hours Ago</muted><br/>
+				   <a href="#">Diana Kennedy</a> purchased a year subscription.<br/>
+				</p>
+			</div>
+		  </div>
+		  <!-- Third Action -->
+		  <div class="desc hidden">
+			<div class="thumb">
+				<span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
+			</div>
+			<div class="details">
+				<p><muted>7 Hours Ago</muted><br/>
+				   <a href="#">Brandon Page</a> purchased a year subscription.<br/>
+				</p>
+			</div>
+		  </div>
+		  <!-- Fourth Action -->
+		  <div class="desc hidden">
+			<div class="thumb">
+				<span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
+			</div>
+			<div class="details">
+				<p><muted>11 Hours Ago</muted><br/>
+				   <a href="#">Mark Twain</a> commented your post.<br/>
+				</p>
+			</div>
+		  </div>
+		  <!-- Fifth Action -->
+		  <div class="desc hidden">
+			<div class="thumb">
+				<span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
+			</div>
+			<div class="details">
+				<p><muted>18 Hours Ago</muted><br/>
+				   <a href="#">Daniel Pratt</a> purchased a wallet in your store.<br/>
+				</p>
+			</div>
+		  </div>
+		  <!-- ELEMENTOS NÃO UTILIZADO -->
+
+		  <!-- USERS ONLINE SECTION -->
+		  <h3>ON-LINE</h3>
+		  <!-- First Member -->
+		  <div class="desc">
+			<div class="thumb">
+				<%= image_tag "avatar/1.jpg", class: "img-circle", width: "35px", height: "35px", align: "" %>
+			</div>
+			<div class="details">
+				<p><a href="#">DIVYA MANIAN</a><br/>
+				   <muted>Available</muted>
+				</p>
+			</div>
+		  </div>
+		  <!-- Second Member -->
+		  <div class="desc">
+			<div class="thumb">
+				<%= image_tag "avatar/2.jpg", class: "img-circle", width: "35px", height: "35px", align: "" %>
+			</div>
+			<div class="details">
+				<p><a href="#">DJ SHERMAN</a><br/>
+				   <muted>I am Busy</muted>
+				</p>
+			</div>
+		  </div>
+		  <!-- Third Member -->
+		  <div class="desc">
+			<div class="thumb">
+				<%= image_tag "avatar/3.jpg", class: "img-circle", width: "35px", height: "35px", align: "" %>
+			</div>
+			<div class="details">
+				<p><a href="#">DAN ROGERS</a><br/>
+				   <muted>Available</muted>
+				</p>
+			</div>
+		  </div>
+
+		  <!-- ELEMENTOS NÃO UTILIZADO -->
+		  <!-- Fourth Member -->
+		  <div class="desc hidden">
+			<div class="thumb">
+				<%= image_tag "avatar/4.jpg", class: "img-circle", width: "35px", height: "35px", align: "" %>
+			</div>
+			<div class="details">
+				<p><a href="#">Zac Sniders</a><br/>
+				   <muted>Available</muted>
+				</p>
+			</div>
+		  </div>
+		  <!-- Fifth Member -->
+		  <div class="desc hidden">
+			<div class="thumb">
+				<%= image_tag "avatar/5.jpg", class: "img-circle", width: "35px", height: "35px", align: "" %>
+			</div>
+			<div class="details">
+				<p><a href="#">Marcel Newman</a><br/>
+				   <muted>Available</muted>
+				</p>
+			</div>
+		  </div>
+	  
+	   </div><!-- /col-lg-3 -->
+</div><! --/row -->
+    
 </section>

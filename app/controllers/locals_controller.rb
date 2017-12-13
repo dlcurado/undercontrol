@@ -51,6 +51,6 @@ class LocalsController < ApplicationController
 	
 	private def params_local
 		params.require(:local).permit(:nome, :nome_contato, :telefone, :email, :endereco, 
-		:cidade, :estado, :horario_montagem, :horario_desmontagem)
+		:cidade, :estado)
 	end
 end

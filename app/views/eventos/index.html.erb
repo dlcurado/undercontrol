@@ -1,7 +1,13 @@
 <section class="wrapper site-min-height">
 	<h3><i class="fa fa-angle-right"></i> Eventos</h3>
+	
+
+
 	<div class="row mt">
 		<div class="col-lg-12">
+		
+			<%= render 'menu' %>
+
 			<%= form_for(eventos_path, method: "get") do %>
 				<%= select_tag(:evento_status, options_from_collection_for_select(Evento::STATUS, :first, :last), {prompt: 'Selecionar'} ) %>
 				<%= submit_tag "Filtrar" %>

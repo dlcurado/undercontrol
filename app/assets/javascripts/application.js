@@ -13,5 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
+//= require custom/jquery.dcjqaccordion.2.7
+//= require custom/fullcalendar.min
 //= require turbolinks
 //= require_tree .

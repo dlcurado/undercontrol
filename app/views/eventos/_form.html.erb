@@ -21,18 +21,26 @@
   </p>
 	
   <p>
-    <%= form.label :data_evento %><%= form.text_field :data_evento, class: 'datepicker' %>
+    Data do Evento: <%= form.text_field :data_evento, class: 'datepicker' %>
   </p>
  
- <p>
+ <!--p>
     Nova Data<input type='text' id='datepicker' class='hasDatepicker' />
-  </p>
+  </p-->
   <p>
   	Local do Evento: <%= form.collection_select(:local_id, Local.all, :id, :nome) %>
   </p>
   
   <p>
   	Tipo de Evento: <%= form.collection_select(:tipo_evento_id, TipoEvento.all, :id, :descricao) %>
+  </p>
+  
+  
+  <p>
+    Hora montagem: <%= form.text_field :hora_montagem, class: 'datepicker' %>
+  </p>
+  <p>
+    Hora desmontagem: <%= form.text_field :hora_desmontagem, class: 'datepicker' %>
   </p>
   
   <p>

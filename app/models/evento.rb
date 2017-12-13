@@ -24,10 +24,9 @@ class Evento < ApplicationRecord
 	end
 	
 	STATUS = {
-		0 => 'Solicitado orçamento', 
-		1 => 'Aguardando retorno do cliente', 
-		2 => 'Em negociação', 
-		3 => 'Cancelada', 
-		4 => 'Fechada'
+		0 => 'Aberto', 
+		1 => 'Em andamento', 
+		2 => 'Com pendência', 
+		3 => 'Concluída'
 	}.freeze
 end

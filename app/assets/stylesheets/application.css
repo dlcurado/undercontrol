@@ -12,9 +12,27 @@
  *
  *= require jquery-ui
  *= require custom/bootstrap
+ *= require custom/bootstrap-fullcalendar
  *= require custom/font-awesome
  *= require custom/style
  *= require custom/style-responsive
+ *= require custom/to-do
+ *= require custom/table-responsive
+ *= require custom/zabuto_calendar
+ 
  *= require_tree .
  *= require_self
  */
+ 
+ 
+.main-menu-controll {
+	float: left;
+	position: relative;
+	display: block;
+	margin-left: 230px;
+	margin-top: 200px
+}
+
+.wrapper {
+	margin-top: 0px;
+}

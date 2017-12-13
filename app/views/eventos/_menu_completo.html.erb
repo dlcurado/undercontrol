@@ -1,0 +1,8 @@
+<%= content_for :modelmenu do %>
+  <%= render 'menu' %>
+  <div class="main-menu-controll">
+	<ul class="nav top-menu">
+	  <li class="dropdown"><%= link_to "Salvar", evento_path(@evento) %></li>
+	</ul>
+  </div>
+<% end %>
