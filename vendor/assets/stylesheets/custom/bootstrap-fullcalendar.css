@@ -217,9 +217,8 @@ html .fc,
   }
   
 .fc-state-default .fc-button-effect span {
+ }
 
-  }
-  
 /* button states (determines colors)  */
   
 .fc-state-default,
@@ -252,7 +251,6 @@ html .fc,
     border-color: #DDDDDD #DDDDDD #FFFFFF;
     color: #646464;
 }
-  }
   
 .fc-state-disabled,
 .fc-state-disabled .fc-button-inner {
