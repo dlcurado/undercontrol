@@ -11,12 +11,6 @@
  * It is generally better to create a new file per style scope.
  *
  *= require jquery-ui
- *= require custom/bootstrap
- *= require custom/bootstrap-fullcalendar
- *= require custom/font-awesome
- *= require custom/style
- *= require custom/style-responsive
- *= require custom/to-do
- *= require custom/table-responsive
- *= require custom/zabuto_calendar
+ *= require font-awesome
+ *= require application_layout
   */

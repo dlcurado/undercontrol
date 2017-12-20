@@ -15,7 +15,7 @@ development:
 
 test:
   <<: *default
-  database: djsonorizacao_test
+  #database: djsonorizacao_test
   #schema_search_path: myapp,sharedapp,public
   database: <%= ENV['RDS_DB_NAME'] %>
   username: <%= ENV['RDS_USERNAME'] %>
@@ -25,8 +25,8 @@ test:
 
 production:
   <<: *default
-#  database: djsonorizacao_production
-#  schema_search_path: myapp,sharedapp,public
+#database: djsonorizacao_production
+#schema_search_path: myapp,sharedapp,public
   database: <%= ENV['RDS_DB_NAME'] %>
   username: <%= ENV['RDS_USERNAME'] %>
   password: <%= ENV['RDS_PASSWORD'] %>

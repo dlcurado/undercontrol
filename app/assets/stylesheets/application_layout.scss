@@ -1,0 +1,113 @@
+// Place all the styles related to the application UI controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: 
+
+
+// SECOES - Configuracao
+body {
+	width: 100%;
+	margin: 0;
+  	padding: 0;
+}
+
+header, .asidebar, #main-content, .site-footer {
+  float: left;
+  margin: 0;
+  padding: 0;
+}
+
+
+header {
+  background-color: #F7A100;
+  height: 80px;
+  width: 100%;
+}
+
+
+.asidebar {
+  background-color: #555;
+  width: 16%;
+}
+
+#main-content {
+  width: 82%;
+}
+
+
+.site-footer {
+  width: 100%;
+}
+// FIM - Configuracao
+
+
+
+/// SIDE BAR MENU
+aside.asidebar div#sidebar ul.sidebar-menu,
+aside.asidebar div#sidebar ul.sidebar-menu ul.sub {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+    
+  li a {
+    display: block;
+    padding: 8px 16px;
+    text-decoration: none;
+  }
+
+  
+
+}
+
+/// SIDE BAR MENU
+aside.asidebar div#sidebar ul.sidebar-menu {
+  background-color: #555;
+  li a {
+     color: white;
+  }
+}
+aside.asidebar div#sidebar ul.sidebar-menu ul.sub {
+    background-color: #f1f1f1;
+    li a {
+	  color: black;
+	}
+	/* Change the link color on hover */
+	li a:hover {
+	  background-color: #2DF2DF;
+	  color: white;
+	}
+  
+	li a.link-active {
+	  background-color: #2DF2DF;
+	  color: white;
+	}
+}
+
+
+/// FIM SIDE BAR MENU
+
+
+
+/* Configuração dos botões de mensagem, recados e alertas */      	
+.top-menu {
+  position: absolute;
+  visibility: hidden;
+}
+
+.sidebar-toggle-box {
+  margin: 15px;
+  height: 50px;
+  width: 50px;
+  float: left;
+  display: flex;
+  flex-wrap: wrap;
+  align-content:center;
+}
+
+.logo {
+	width: 250px;
+	height: 100px;
+	float: left;
+	margin-top: 25px;
+	font-size: 1.5em;
+}
+/* FIM - Configuração dos botões de mensagem, recados e alertas */      	

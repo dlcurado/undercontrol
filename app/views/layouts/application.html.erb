@@ -18,12 +18,13 @@
       	*********************************************************************************************************************************************************** -->
       	<!--header start-->
       	<header class="header black-bg">	
-			<div class="sidebar-toggle-box">
-                  <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
-              </div>
+			<div class="sidebar-toggle-box"><%= fa_icon "bars 3x" %></div>
+            
             <!--logo start-->
             <a href="<%= root_path %>" class="logo"><b>Under Control</b></a>
             <!--logo end-->
+            
+            
             <div class="nav notify-row" id="top_menu">
                 <!--  notification start -->
                 <ul class="nav top-menu">
@@ -179,7 +180,7 @@
       	MAIN SIDEBAR MENU
       	*********************************************************************************************************************************************************** -->
       	<!--sidebar start-->
-      	<aside>
+      	<aside class="asidebar">
         	<div id="sidebar"  class="nav-collapse ">
   			  <!-- sidebar menu start-->
               <ul class="sidebar-menu" id="nav-accordion">
@@ -188,91 +189,55 @@
               	  <h5 class="centered">Nome do Usuário</h5>
               	  	
                   <li class="mt">
-                      <a class="active" href="<%= root_path %>">
-                          <i class="fa fa-dashboard"></i>
-                          <span>Dashboard</span>
+                      <a href="<%= root_path %>">
+                          <%= fa_icon "dashboard 2x", text: "Dashboard" %>
                       </a>
                   </li>
-
-                  <li class="mt">
-                      <a href="<%= eventos_path %>" >
-                          <i class="fa fa-desktop"></i>
-                          <span>Eventos</span>
+                  
+                  <li class="sub-menu">
+                      <a class="eventos" href="javascript:;" >
+                        <%= fa_icon "desktop 2x", text: "Eventos" %>
                       </a>
                       <ul class="sub">
-                          <li><a  href="general.html">General</a></li>
-                          <li><a  href="buttons.html">Buttons</a></li>
-                          <li><a  href="panels.html">Panels</a></li>
+                          <li><a href='<%= eventos_path %>'><%= fa_icon "search", text: "Listar" %></a></li>
+						  <li><a href='<%= new_evento_path %>'><%= fa_icon "file-text", text: "Novo" %></a></li>
                       </ul>
                   </li>
 
-                  <li class="mt">
-                      <a href="<%= clientes_path %>" >
-                          <i class="fa fa-cogs"></i>
-                          <span>Clientes</span>
+                  <li class="sub-menu">
+                      <a class="clientes" href="javascript:;" >
+                        <%= fa_icon "cogs 2x", text: "Clientes" %>
                       </a>
                       <ul class="sub">
-                          <li><a  href="calendar.html">Calendar</a></li>
-                          <li><a  href="gallery.html">Gallery</a></li>
-                          <li><a  href="todo_list.html">Todo List</a></li>
+                          <li><a href='<%= clientes_path %>'><%= fa_icon "search", text: "Listar" %></a></li>
+						  <li><a href='<%= new_cliente_path %>'><%= fa_icon "file-text", text: "Novo" %></a></li>
                       </ul>
                   </li>
-                  <li class="mt">
-                      <a href="<%= locals_path %>" >
-                          <i class="fa fa-book"></i>
-                          <span>Locais</span>
-                      </a>
-                      <ul class="sub">
-                          <li class="active"><a  href="blank.html">Blank Page</a></li>
-                          <li><a  href="login.html">Login</a></li>
-                          <li><a  href="lock_screen.html">Lock Screen</a></li>
-                      </ul>
-                  </li>
-                  <li class="mt">
-                      <a href="<%= tipo_eventos_path %>" >
-                          <i class="fa fa-tasks"></i>
-                          <span>Tipos de Festas</span>
-                      </a>
-                      <ul class="sub">
-                          <li><a  href="form_component.html">Form Components</a></li>
-                      </ul>
-                  </li>
-                  <li class="sub-menu hidden">
+                  <li class="sub-menu">
                       <a href="javascript:;" >
-                          <i class="fa fa-th"></i>
-                          <span>Data Tables</span>
+                         <%= fa_icon "book 2x", text: "Locais" %>
                       </a>
                       <ul class="sub">
-                          <li><a  href="basic_table.html">Basic Table</a></li>
-                          <li><a  href="responsive_table.html">Responsive Table</a></li>
+                          <li><a href='<%= locals_path %>'><%= fa_icon "search", text: "Listar" %></a></li>
+						  <li><a href='<%= new_local_path %>'><%= fa_icon "file-text", text: "Novo" %></a></li>
                       </ul>
                   </li>
-                  <li class="sub-menu hidden">
+                  <li class="sub-menu">
                       <a href="javascript:;" >
-                          <i class=" fa fa-bar-chart-o"></i>
-                          <span>Charts</span>
+                        <%= fa_icon "tasks 2x", text: "Tipos de Festas" %>
                       </a>
                       <ul class="sub">
-                          <li><a  href="morris.html">Morris</a></li>
-                          <li><a  href="chartjs.html">Chartjs</a></li>
+                          <li><a href='<%= tipo_eventos_path %>'><%= fa_icon "search", text: "Listar" %></a></li>
+						  <li><a href='<%= new_tipo_evento_path %>'><%= fa_icon "file-text", text: "Novo" %></a></li>
                       </ul>
                   </li>
-
               </ul>
               <!-- sidebar menu end-->
+
   			</div>
   			
 		</aside>
       	<!--sidebar end-->
-      	
-		<!-- **********************************************************************************************************************************************************
-		MAIN MENU - Generic section for models cruds or customized actions
-		This content need to generate only li 
-		*********************************************************************************************************************************************************** -->
-		<!--main content start-->
-		<section id="main-menu">
-			<%= yield :modelmenu %>
-		</section>
 
 
       	<!-- **********************************************************************************************************************************************************
@@ -287,7 +252,7 @@
       	<!--footer start-->
       	<footer class="site-footer">
         	<div class="text-center">
-            	2014 - Alvarez.is
+            	2017 - AboutBe Company
             	<a href="blank.html#" class="go-top">
             	<i class="fa fa-angle-up"></i>
         		</a>
