@@ -1,7 +1,18 @@
 class ClientesController < ApplicationController
 	def index
-		@clientes = Cliente.all
+	   if params.has_key?("commit")
+		 filtro = []
+		   if params[:cliente].present?
+				nome = params[:cliente]
+				filtro << ["nome = #{cliente}"]
+		   end
+
+		   @clientes = Cliente.all.where(filtro.join(" AND "))
+	   else
+		   @clientes = Cliente.all
+	   end
 	end
+
 
 	def create
 		@cliente = Cliente.new(clientes_params)
@@ -16,10 +27,7 @@ class ClientesController < ApplicationController
 
 	def new
 		@cliente = Cliente.new
-		3.times do
-			evento = @cliente.eventos.build
-			4.times { evento.historicos.build }
-		end
+		
 		
 	end
 

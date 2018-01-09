@@ -1,47 +1,45 @@
-<section class="wrapper site-min-height">
-	<h3><i class="fa fa-angle-right"></i> Clientes</h3>
-	<div class="row mt">
-		<div class="col-lg-12">
+<div id="filters">
+  <%= form_for(clientes_path, method: "get") do |form| %>
+	<%= form.text_field :cliente, value: 'Nome' %>
+	<%= form.text_field :email, value: 'E-mail' %>
+	<%= submit_tag "Filtrar" %>
+  <% end %>
+<div>
 
-			<p><%= link_to 'Cadastrar', new_cliente_path %></p>
+<br />
 
-			<table border='1'>
-				<tr>
-					<th>Nome</td>
-					<th>Telefone</td>
-					<th>E-mail</td>
-					<th>Possui Eventos?</th>
-					<th>Lista de Eventos</td>
-					<th>Editar</td>
-					<th>Desativar</td>
-				</tr>
-	
-				<% @clientes.each do |cliente| %>
-				<tr>
-					<td><%= cliente.nome %></td>
-					<td><%= cliente.telefone %></td>
-					<td><%= cliente.email %></td>
-					<td>
-						<%=
-							if not cliente.eventos.last.nil?
-								raw "Sim"#cliente.eventos.last.created_at
-							else
-								raw "Não"
-							end
-						%>
-					</td>
-					<td><%= link_to 'Ver Eventos', cliente_eventos_path(cliente) %></td>
-					<td><%= link_to 'Editar', edit_cliente_path(cliente) %></td>
-					<td><%= link_to 'Desativar', cliente_path(cliente), 
-								method: :delete,
-								data: { confirm: 'Tem certeza que deseja excluir o cliente?' }  %></td>
-				</tr>
-				<% end %>
-			</table>
+<div id="results">
+  <table border='1'>
+	  <tr>
+		  <th>Nome</td>
+		  <th>Telefone</td>
+		  <th>E-mail</td>
+		  <th>Possui Eventos?</th>
+		  <th>Lista de Eventos</td>
+		  <th>Editar</td>
+		  <th>Desativar</td>
+	  </tr>
 
-			<p><%= link_to 'Cadastrar', new_cliente_path %></p>
-
-		</div>
-	</div>
-
-</section><! --/wrapper -->
+	  <% @clientes.each do |cliente| %>
+		<tr>
+			<td><%= cliente.nome %></td>
+			<td><%= cliente.telefone %></td>
+			<td><%= cliente.email %></td>
+			<td>
+				<%=
+					if not cliente.eventos.last.nil?
+						raw "Sim"#cliente.eventos.last.created_at
+					else
+						raw "Não"
+					end
+				%>
+			</td>
+			<td><%= link_to 'Ver Eventos', cliente_eventos_path(cliente) %></td>
+			<td><%= link_to 'Editar', edit_cliente_path(cliente) %></td>
+			<td><%= link_to 'Desativar', cliente_path(cliente), 
+						method: :delete,
+						data: { confirm: 'Tem certeza que deseja excluir o cliente?' }  %></td>
+		</tr>
+	  <% end %>
+  </table>
+</div>

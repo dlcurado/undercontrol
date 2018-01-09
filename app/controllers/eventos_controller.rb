@@ -6,6 +6,7 @@ class EventosController < ApplicationController
 
 		if params.has_key?("commit")
 			logger.debug params[:commit]
+			
 			if params[:evento_status].present?
 				id = params[:evento_status]
 				filtro << ["evento_status = #{id.to_i}"]

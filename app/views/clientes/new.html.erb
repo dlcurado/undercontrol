@@ -1,35 +1,27 @@
-<section class="wrapper site-min-height">
-	<h3><i class="fa fa-angle-right"></i> Cadastrar novo clientes</h3>
-	<div class="row mt">
-		<div class="col-lg-12">
-		
-			<%= form_for :cliente, url: clientes_path do |form| %>
+<div class="form">
+  <%= form_for :cliente, url: clientes_path do |form| %>
 
-			  <% if @cliente.errors.any? %>
-			    <div id="error_explanation">
-			      <h2>
- 			       Nao foi possivel salvar o cliente pois encontramos <%= @cliente.errors.count %> erros.</br>
-  			      Veja:	
- 			     </h2>
-			      <ul>
-			        <% @cliente.errors.full_messages.each do |msg| %>
-			          <li><%= msg %></li>
-			        <% end %>
-			      </ul>
-			    </div>
-			  <% end %>
-  
-			  <p><%= form.label :nome %><%= form.text_field :nome %></p>
- 
-			  <p><%= form.label :telefone %><%= form.text_field :telefone %></p>
- 
-			  <p><%= form.label :email %><%= form.text_field :email %></p>
-  
-		      <p><%= form.submit %></p>
-  
-		      <%= link_to 'Lista de Clientes', clientes_path %>
-			<% end %>
-		</div>
-	</div>
+	<% if @cliente.errors.any? %>
+	  <div id="error_explanation">
+		<h2>
+		 Nao foi possivel salvar o cliente pois encontramos <%= @cliente.errors.count %> erros.</br>
+		Veja:	
+	   </h2>
+		<ul>
+		  <% @cliente.errors.full_messages.each do |msg| %>
+			<li><%= msg %></li>
+		  <% end %>
+		</ul>
+	  </div>
+	<% end %>
 
-</section><! --/wrapper -->
+	<p><%= form.label :nome %><%= form.text_field :nome %></p>
+
+	<p><%= form.label :telefone %><%= form.text_field :telefone %></p>
+
+	<p><%= form.label :email %><%= form.text_field :email %></p>
+
+	<p><%= form.submit %></p>
+
+  <% end %>
+</div>
