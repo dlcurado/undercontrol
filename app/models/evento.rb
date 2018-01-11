@@ -25,8 +25,7 @@ class Evento < ApplicationRecord
 	
 	STATUS = {
 		0 => 'Aberto', 
-		1 => 'Em andamento', 
-		2 => 'Com pendência', 
-		3 => 'Concluída'
+		1 => 'Fechado', 
+		2 => 'Não fechado'
 	}.freeze
 end

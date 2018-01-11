@@ -1,7 +1,8 @@
 <div id="filters">
-  <%= form_for(clientes_path, method: "get") do |form| %>
-	<%= form.text_field :cliente, value: 'Nome' %>
-	<%= form.text_field :email, value: 'E-mail' %>
+  <%= form_tag(clientes_path, method: "get") do %>
+	<%= text_field_tag :cliente, 'Nome' %>
+	<%= text_field_tag :telefone, 'Telefone' %>
+	<%= text_field_tag :email, 'E-mail' %>
 	<%= submit_tag "Filtrar" %>
   <% end %>
 <div>

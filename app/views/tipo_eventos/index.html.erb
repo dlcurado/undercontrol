@@ -1,33 +1,37 @@
-<section class="wrapper site-min-height">
-	<h3><i class="fa fa-angle-right"></i> Tipos de eventos que realizamos</h3>
-	<div class="row mt">
-		<div class="col-lg-12">
-		
-			<table border='1'>
-				<tr>
-					<th>ID</td>
-					<th>Descrição</td>
-					<th>Editar</td>
-					<th>Desativar</td>
-				</tr>
-	
-				<% @tiposEvento.each do |tipo| %>
-					<tr>
-						<td><%= tipo.descricao %></td>
-						<td><%= tipo.id %></td>
-						<td><%= link_to 'Editar', edit_tipo_evento_path(tipo) %></td>
-						<td><%= link_to 'Desativar', tipo_evento_path(tipo), 
-								method: :delete,
-								data: { confirm: 'Tem certeza que deseja excluir este tipo de evento?' }  %></td>
-					</tr>
-				<% end %>
-			</table>
+<!--div id="filters">
+  <%= form_tag(tipo_eventos_path, method: "get") do %>
+	<%= text_field_tag :descricao, 'Tipo de Evento', class: "combo_autocomplete" %>
+	<%= submit_tag "Filtrar" %>
+  <% end %>
+<div-->
 
-			<br />
-			<% @acao = "Inserir" %>
-			<div><%= render 'form' %></div>
+<br />
+
+<div id="results">
+  <table border='1'>
+	  <tr>
+		  <th>ID</td>
+		  <th>Descrição</td>
+		  <th>Editar</td>
+		  <th>Desativar</td>
+	  </tr>
+
+	  <% @tiposEvento.each do |tipo| %>
+		  <tr>
+			  <td><%= tipo.id %></td>
+			  <td><%= tipo.descricao %></td>
+			  <td><%= link_to 'Editar', edit_tipo_evento_path(tipo) %></td>
+			  <td><%= link_to 'Desativar', tipo_evento_path(tipo), 
+					  method: :delete,
+					  data: { confirm: 'Tem certeza que deseja excluir este tipo de evento?' }  %></td>
+		  </tr>
+	  <% end %>
+  </table>
+</div>
+
+<br />
 			
-		</div>
-	</div>
-
-</section><! --/wrapper -->
+<div id="insert_form">
+ <% @acao = "Inserir" %>
+ <div><%= render 'form' %></div>
+</div>

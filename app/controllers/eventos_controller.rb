@@ -8,6 +8,7 @@ class EventosController < ApplicationController
 			logger.debug params[:commit]
 			
 			if params[:evento_status].present?
+				logger.debug "Encontrou o parametro evento_status"
 				id = params[:evento_status]
 				filtro << ["evento_status = #{id.to_i}"]
 			end

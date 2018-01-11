@@ -1,39 +1,37 @@
-<section class="wrapper site-min-height">
-	<h3><i class="fa fa-angle-right"></i> Locais de realização de eventos</h3>
-	<div class="row mt">
-		<div class="col-lg-12">
+<div id="filters">
+  <%= form_tag(eventos_path, method: "get") do %>
+	<%= text_field_tag :nome_local, 'Nome do Local', class: "combo_autocomplete" %>
+	<%= text_field_tag :nome_contato, 'Nome do Contato', class: "combo_autocomplete" %>
+	<%= submit_tag "Filtrar" %>
+  <% end %>
+<div>
 
-			<p><%= link_to 'Cadastrar', new_local_path %></p>
+<br />
 
-			<table border='1'>
-				<tr>
-					<th>Nome</td>
-					<th>Nome do Contato</th>
-					<th>E-mail</th>
-					<th>Telefone</th>
-					<th>Detalhes</td>
-					<th>Editar</td>
-					<th>Desativar</td>
-				</tr>
-	
-				<% @locais.each do |local| %>
-					<tr>
-						<td><%= local.nome %></td>
-						<td><%= local.nome_contato %></td>
-						<td><%= local.email %></td>
-						<td><%= local.telefone %></td>
-						<td><%= link_to 'Ver', local_path(local) %></td>
-						<td><%= link_to 'Editar', edit_local_path(local) %></td>
-						<td><%= link_to 'Desativar', local_path(local), 
-								method: :delete,
-								data: { confirm: 'Tem certeza que deseja excluir este local?' }  %></td>
-					</tr>
-				<% end %>
-			</table>
+<div id="results">
+  <table border='1'>
+	  <tr>
+		  <th>Nome</td>
+		  <th>Nome do Contato</th>
+		  <th>E-mail</th>
+		  <th>Telefone</th>
+		  <th>Detalhes</td>
+		  <th>Editar</td>
+		  <th>Desativar</td>
+	  </tr>
 
-			<p><%= link_to 'Cadastrar', new_local_path %></p>
-
-		</div>
-	</div>
-
-</section><! --/wrapper -->
+	  <% @locais.each do |local| %>
+		  <tr>
+			  <td><%= local.nome %></td>
+			  <td><%= local.nome_contato %></td>
+			  <td><%= local.email %></td>
+			  <td><%= local.telefone %></td>
+			  <td><%= link_to 'Ver', local_path(local) %></td>
+			  <td><%= link_to 'Editar', edit_local_path(local) %></td>
+			  <td><%= link_to 'Desativar', local_path(local), 
+					  method: :delete,
+					  data: { confirm: 'Tem certeza que deseja excluir este local?' }  %></td>
+		  </tr>
+	  <% end %>
+  </table>
+</div>

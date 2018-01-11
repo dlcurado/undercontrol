@@ -188,47 +188,47 @@
               	  <p class="centered"><a href="#"><%= image_tag "avatar/1.jpg", class: "img-circle", width: "60" %></a></p>
               	  <h5 class="centered">Nome do Usuário</h5>
               	  	
-                  <li class="mt">
+                  <!--li class="mt">
                       <a href="<%= root_path %>">
                           <%= fa_icon "dashboard 2x", text: "Dashboard" %>
                       </a>
-                  </li>
+                  </li-->
                   
                   <li class="sub-menu">
                       <a class="eventos" href="javascript:;" >
-                        <%= fa_icon "desktop 2x", text: "Eventos" %>
+                        <%= fa_icon "desktop", text: "Eventos" %>
                       </a>
                       <ul class="sub">
-                          <li><a href='<%= eventos_path %>'><%= fa_icon "search", text: "Listar" %></a></li>
-						  <li><a href='<%= new_evento_path %>'><%= fa_icon "file-text", text: "Novo" %></a></li>
+                          <li><a href='<%= eventos_path %>'><%= fa_icon "angle-right", text: "Listar" %></a></li>
+						  <li><a href='<%= new_evento_path %>'><%= fa_icon "angle-right", text: "Novo" %></a></li>
                       </ul>
                   </li>
 
                   <li class="sub-menu">
                       <a class="clientes" href="javascript:;" >
-                        <%= fa_icon "cogs 2x", text: "Clientes" %>
+                        <%= fa_icon "cogs", text: "Clientes" %>
                       </a>
                       <ul class="sub">
-                          <li><a href='<%= clientes_path %>'><%= fa_icon "search", text: "Listar" %></a></li>
-						  <li><a href='<%= new_cliente_path %>'><%= fa_icon "file-text", text: "Novo" %></a></li>
+                          <li><a href='<%= clientes_path %>'><%= fa_icon "angle-right", text: "Listar" %></a></li>
+						  <li><a href='<%= new_cliente_path %>'><%= fa_icon "angle-right", text: "Novo" %></a></li>
                       </ul>
                   </li>
                   <li class="sub-menu">
                       <a href="javascript:;" >
-                         <%= fa_icon "book 2x", text: "Locais" %>
+                         <%= fa_icon "book", text: "Locais" %>
                       </a>
                       <ul class="sub">
-                          <li><a href='<%= locals_path %>'><%= fa_icon "search", text: "Listar" %></a></li>
-						  <li><a href='<%= new_local_path %>'><%= fa_icon "file-text", text: "Novo" %></a></li>
+                          <li><a href='<%= locals_path %>'><%= fa_icon "angle-right", text: "Listar" %></a></li>
+						  <li><a href='<%= new_local_path %>'><%= fa_icon "angle-right", text: "Novo" %></a></li>
                       </ul>
                   </li>
                   <li class="sub-menu">
                       <a href="javascript:;" >
-                        <%= fa_icon "tasks 2x", text: "Tipos de Festas" %>
+                        <%= fa_icon "tasks", text: "Tipos de Festas" %>
                       </a>
                       <ul class="sub">
-                          <li><a href='<%= tipo_eventos_path %>'><%= fa_icon "search", text: "Listar" %></a></li>
-						  <li><a href='<%= new_tipo_evento_path %>'><%= fa_icon "file-text", text: "Novo" %></a></li>
+                          <li><a href='<%= tipo_eventos_path %>'><%= fa_icon "angle-right", text: "Listar" %></a></li>
+						  <li><a href='<%= new_tipo_evento_path %>'><%= fa_icon "angle-right", text: "Novo" %></a></li>
                       </ul>
                   </li>
               </ul>

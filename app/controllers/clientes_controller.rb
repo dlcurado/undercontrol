@@ -2,15 +2,27 @@ class ClientesController < ApplicationController
 	def index
 	   if params.has_key?("commit")
 		 filtro = []
-		   if params[:cliente].present?
+		   if params[:cliente].present? && params[:cliente] != "Nome"
 				nome = params[:cliente]
-				filtro << ["nome = #{cliente}"]
+				filtro << ["nome like '#{nome}%'"]
+		   end
+		   
+		   if params[:telefone].present?
+				telefone = params[:telefone]
+				filtro << ["telefone like '#{telefone}%'"]
+		   end
+		   
+		   if params[:email].present?
+				email = params[:email]
+				filtro << ["email like '#{email}%'"]
 		   end
 
 		   @clientes = Cliente.all.where(filtro.join(" AND "))
 	   else
 		   @clientes = Cliente.all
 	   end
+	   
+	   logger.debug @clientes
 	end
 
 

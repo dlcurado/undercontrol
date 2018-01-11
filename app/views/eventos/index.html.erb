@@ -1,7 +1,9 @@
 <div id="filters">
-  <%= form_for(eventos_path, method: "get") do |form| %>
-	<%= form.select(:cliente, options_from_collection_for_select(Cliente.all, :id, :nome), {prompt: 'Nome do cliente'} ) %>
-	<%= form.select(:evento_status, options_from_collection_for_select(Evento::STATUS, :first, :last), {prompt: 'Status do evento'} ) %>
+  <%= form_tag(eventos_path, method: "get") do %>
+	<%= select_tag(:cliente, options_from_collection_for_select(Cliente.all, :id, :nome), {prompt: 'Nome do cliente'} ) %>
+	<%= text_field_tag :nome_teste, 'Nome Auto Complete', class: "combo_autocomplete" %>
+	<%= text_field_tag :data_evento, 'Data do evento', class: "datepicker" %>
+	<%= select_tag(:evento_status, options_from_collection_for_select(Evento::STATUS, :first, :last), {prompt: 'Status do evento'} ) %>
 	<%= submit_tag "Filtrar" %>
   <% end %>
 <div>
