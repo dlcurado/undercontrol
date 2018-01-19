@@ -12,7 +12,7 @@ gem 'rails', '~> 5.0.3'
 
 # Use sqlite3 as the database for Active Record
 # gem 'sqlite3'
-gem 'pg'
+gem 'pg', '~> 0.21.0'
 
 
 # Use Puma as the app server
@@ -64,3 +64,7 @@ gem 'active_decorator'
 gem 'jquery-ui-rails'
 
 gem 'font-awesome-rails'
+
+gem 'fullcalendar-rails'
+
+gem 'momentjs-rails'

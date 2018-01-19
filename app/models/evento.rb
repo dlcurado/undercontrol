@@ -7,9 +7,9 @@ class Evento < ApplicationRecord
 	belongs_to :tipo_evento
 	
 	
-	validates :data_evento, presence: true
-	validates :hora_montagem, presence: true
-	validates :hora_desmontagem, presence: true
+	#validates :data_evento, presence: true
+	#validates :hora_montagem, presence: true
+	#validates :hora_desmontagem, presence: true
 	
 	def data_evento_is_data
 		#if :data_evento.nil?
@@ -24,8 +24,11 @@ class Evento < ApplicationRecord
 	end
 	
 	STATUS = {
-		0 => 'Aberto', 
-		1 => 'Fechado', 
-		2 => 'Não fechado'
+		1 => 'Aberto', 
+		2 => 'Aguardando', 
+		3 => 'Enviado',
+		4 => 'Fechado',
+		5 => 'Visitado',
+		6 => 'Não fechado'
 	}.freeze
 end

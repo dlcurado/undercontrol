@@ -14,11 +14,16 @@ class EventosController < ApplicationController
 			end
 
 			@eventos = Evento.all.where(filtro.join(" AND ")).order("data_evento DESC")
+			logger.debug "*************************** COMMIT"			
 		elsif params.has_key?("cliente_id")
 			@cliente = Cliente.find(params[:cliente_id])
 			@eventos = @cliente.eventos
+			logger.debug "*************************** CLIENTE"
 		else
-			@eventos = Evento.all.order("data_evento ASC")
+			@eventos = Evento.where("data_evento < '01/02/2018' AND data_evento > '01/01/2018'")
+			@eventos_by_date = @eventos.group_by(&:data_evento)
+			@date = params[:date] ? Date.parse(params[:date]) : Date.today
+			logger.debug "*************************** EVENTOS"			
 		end
 		
 	end
@@ -67,6 +72,34 @@ class EventosController < ApplicationController
 		@evento = Evento.find(params[:id])
 		@evento.destroy
 		redirect_to eventos_path
+	end
+	
+	def get_all
+		@eventos = Evento.where("data_evento > ? AND data_evento < ?", params[:start], params[:end])
+		@json_eventos = Array.new
+		@eventos.each do |evento|
+			@json_evento_str = { title: evento.cliente.nome, start: evento.data_evento, end: evento.data_evento, backgroundColor: get_color(evento.tipo_evento.descricao) }
+			@json_eventos << @json_evento_str
+		end
+		respond_to do |format|
+			format.json { render json: @json_eventos, status: :created }#, location: @eventos }
+			logger.debug "*************************** EVENTOS - GET ALL by aJax" 
+			logger.debug @json_eventos
+		end
+	end
+	
+	private def get_color(tipo_evento)
+		case tipo_evento
+			when 'CORPORATIVO'
+				'blue'
+			when 'FORMATURA'
+				'gray'
+			when 'CASAMENTO'
+				'red'
+			else
+				'pink'
+			
+		end
 	end
 	
 	def fazer_follow_up

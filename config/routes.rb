@@ -13,6 +13,9 @@ Rails.application.routes.draw do
   	
   	resources :eventos do
   		resources :historicos
+		collection do
+			get 'get_all'
+		end
   	end
   	
   	resources :historicos

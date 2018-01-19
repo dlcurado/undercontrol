@@ -1,4 +1,4 @@
-module EventoDecorator
+﻿module EventoDecorator
 
 	def prazo_status
 		if !historicos.last.nil?
@@ -47,8 +47,11 @@ module EventoDecorator
 	end
 	
 	def data
-		data_evento.strftime("%d/%m/%Y")
+		if data_evento.nil?
+			"Não definida"
+		else
+			data_evento.strftime("%d/%m/%Y")
+		end
 		#.to_formatted_s(:short)
 	end
-			
 end

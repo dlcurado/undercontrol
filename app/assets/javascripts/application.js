@@ -15,5 +15,8 @@
 //= require jquery-ui/widgets/menu
 //= require jquery-ui/widgets/autocomplete
 //= require UnderControl-ui
+//= require moment
+//= require fullcalendar
 //= require turbolinks
 //= require_tree .
+

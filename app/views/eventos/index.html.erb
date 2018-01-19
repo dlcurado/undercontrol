@@ -6,11 +6,15 @@
 	<%= select_tag(:evento_status, options_from_collection_for_select(Evento::STATUS, :first, :last), {prompt: 'Status do evento'} ) %>
 	<%= submit_tag "Filtrar" %>
   <% end %>
-<div>
+</div>
 
 <br />
 
+<div id="ajax_result"></div>
+<div id="calendar"></div>
+
 <div id="results">
+
   <table border='1'>
 	<tr>
 	  <th>Cliente</td>
@@ -29,7 +33,13 @@
 	  <tr bgcolor="<%= evento.cor_fundo %>">
 		<td><%= evento.cliente.nome %></td>
 		<td><%= evento.data %></td>
-		<td><%= evento.local.nome %></td>
+
+		<% if evento.local.nil? %>
+			<td>"Não definido"</td>
+		<% else %>
+			<td><%= evento.local.nome %></td>
+		<% end %>
+
 		<td><%= evento.tipo_evento.descricao %></td>
 		<td><%= Evento::STATUS[evento.evento_status] %></td>
 		<td>000000</td>

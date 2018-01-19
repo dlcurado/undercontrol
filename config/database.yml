@@ -5,7 +5,8 @@ default: &default
   username: UnderControl
   password: admin123
   host: localhost
-  port: 5433
+  #port: 5433
+  port: 5432
   
 development:
   <<: *default
