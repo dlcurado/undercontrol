@@ -74,31 +74,18 @@ class EventosController < ApplicationController
 		redirect_to eventos_path
 	end
 	
+	
+	##############################################################################
+	######                         AJAX EVENTS                       ########
+	##############################################################################
 	def get_all
 		@eventos = Evento.where("data_evento > ? AND data_evento < ?", params[:start], params[:end])
-		@json_eventos = Array.new
-		@eventos.each do |evento|
-			@json_evento_str = { title: evento.cliente.nome, start: evento.data_evento, end: evento.data_evento, backgroundColor: get_color(evento.tipo_evento.descricao) }
-			@json_eventos << @json_evento_str
-		end
+		@fullCalendarAdapter = Adapter::FullcalendarEventAdapter.new(@eventos)
+		@json_eventos = @fullCalendarAdapter.toFullEvent
 		respond_to do |format|
 			format.json { render json: @json_eventos, status: :created }#, location: @eventos }
 			logger.debug "*************************** EVENTOS - GET ALL by aJax" 
 			logger.debug @json_eventos
-		end
-	end
-	
-	private def get_color(tipo_evento)
-		case tipo_evento
-			when 'CORPORATIVO'
-				'blue'
-			when 'FORMATURA'
-				'gray'
-			when 'CASAMENTO'
-				'red'
-			else
-				'pink'
-			
 		end
 	end
 	

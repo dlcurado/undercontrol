@@ -8,6 +8,9 @@ $(document).on "turbolinks:load", ->
   	changeYear: true
   })
 
+data_eventos = []
+#data_eventos_do_dia = []
+
 $(document).on "turbolinks:load", ->
   $('#calendar').fullCalendar({
 		eventSources: [
@@ -17,9 +20,19 @@ $(document).on "turbolinks:load", ->
 			error: ->
 				alert 'Erro'
 			success: (data) ->
-				$('#ajax_result').append data[0].cor_fonte
+				data_eventos = data
 			}
-		]	
+		]
+		dayClick: (date, jsEvent, view) ->
+			data_eventos_do_dia = []
+			index = 0
+			while index < data_eventos.length
+				if (Date.parse(data_eventos[index].start) == Date.parse(date))
+					data_eventos_do_dia.push data_eventos[index]
+				
+				index++
+			
+			alert(data_eventos_do_dia)
   })
 
  

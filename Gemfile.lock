@@ -42,6 +42,7 @@ GEM
     arel (7.1.4)
     bindex (0.5.0)
     builder (3.2.3)
+    byebug (9.1.0)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0)
@@ -53,6 +54,7 @@ GEM
     crass (1.0.3)
     erubis (2.7.0)
     execjs (2.7.0)
+    ffi (1.9.18)
     ffi (1.9.18-x86-mingw32)
     font-awesome-rails (4.7.0.3)
       railties (>= 3.2, < 5.2)
@@ -89,8 +91,11 @@ GEM
       railties (>= 3.1)
     multi_json (1.13.1)
     nio4r (2.2.0)
+    nokogiri (1.8.1)
+      mini_portile2 (~> 2.3.0)
     nokogiri (1.8.1-x86-mingw32)
       mini_portile2 (~> 2.3.0)
+    pg (0.21.0)
     pg (0.21.0-x86-mingw32)
     puma (3.11.0)
     rack (2.0.3)
@@ -168,6 +173,7 @@ GEM
     websocket-extensions (0.1.3)
 
 PLATFORMS
+  ruby
   x86-mingw32
 
 DEPENDENCIES
