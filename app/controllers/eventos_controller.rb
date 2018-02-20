@@ -33,6 +33,14 @@ class EventosController < ApplicationController
 		@evento = Evento.find(params[:id])
 	end
 	
+	def show_many
+		logger.debug "*************************** SHOW MANY"
+		@eventos = Evento.where('data_evento = ?', params[:date])
+		respond_to do |format|
+			format.js
+		end
+	end
+	
 	def new
 		logger.debug "*************************** NEW"
 		@evento = Evento.new

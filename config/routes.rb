@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   		resources :historicos
 		collection do
 			get 'get_all'
+			get 'show_many'
 		end
   	end
   	

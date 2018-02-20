@@ -24,15 +24,16 @@ $(document).on "turbolinks:load", ->
 			}
 		]
 		dayClick: (date, jsEvent, view) ->
-			data_eventos_do_dia = []
-			index = 0
-			while index < data_eventos.length
-				if (Date.parse(data_eventos[index].start) == Date.parse(date))
-					data_eventos_do_dia.push data_eventos[index]
-				
-				index++
-			
-			alert(data_eventos_do_dia)
+			$.ajax
+				url: '/eventos/show_many'
+				type: 'GET'
+				data:
+					date: date.toJSON()
+				error: ->
+					$('.modal').html('Erro').dialog()
+					$('.modal').dialog()
+				success: (data) ->
+					$('.modal').dialog()
   })
 
  
