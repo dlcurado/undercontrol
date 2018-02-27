@@ -1,4 +1,4 @@
-<%= form_for([@evento]) do |form| %>	
+<%= form_for @evento do |form| %>	
 
   <% if @evento.errors.any? %>
     <div id="error_explanation">
@@ -23,10 +23,7 @@
   <p>
     Data do Evento: <%= form.text_field :data_evento, class: 'datepicker' %>
   </p>
- 
- <!--p>
-    Nova Data<input type='text' id='datepicker' class='hasDatepicker' />
-  </p-->
+
   <p>
   	Local do Evento: <%= form.collection_select(:local_id, Local.all, :id, :nome) %>
   </p>
@@ -46,7 +43,7 @@
   <p>
   	Status do evento: <%= form.select :evento_status, Evento::STATUS.map{|status| [status[1], status[0]]} %>
   </p>
-
+  
   <p>
     <%= form.submit "Salvar" %>
   </p>

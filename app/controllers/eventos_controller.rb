@@ -20,7 +20,10 @@ class EventosController < ApplicationController
 			@eventos = @cliente.eventos
 			logger.debug "*************************** CLIENTE"
 		else
-			@eventos = Evento.where("data_evento < '01/02/2018' AND data_evento > '01/01/2018'")
+			@mes_atual = 
+			@eventos = Evento.where("data_evento > ? AND data_evento < ?", 
+				Date.today.beginning_of_month, Date.today.end_of_month)
+				
 			@eventos_by_date = @eventos.group_by(&:data_evento)
 			@date = params[:date] ? Date.parse(params[:date]) : Date.today
 			logger.debug "*************************** EVENTOS"			
@@ -29,26 +32,15 @@ class EventosController < ApplicationController
 	end
 	
 	def show
-		logger.debug "*************************** SHOW"
 		@evento = Evento.find(params[:id])
 	end
 	
-	def show_many
-		logger.debug "*************************** SHOW MANY"
-		@eventos = Evento.where('data_evento = ?', params[:date])
-		respond_to do |format|
-			format.js
-		end
-	end
 	
 	def new
-		logger.debug "*************************** NEW"
 		@evento = Evento.new
-		clientes = @clientes
 	end
 	
 	def create
-		logger.debug "*************************** CREATE"
 		@cliente = Cliente.find(params_evento[:cliente_id])
 		@evento = @cliente.eventos.new(params_evento)
 		
@@ -60,16 +52,12 @@ class EventosController < ApplicationController
 	end
 	
 	def edit
-		logger.debug "*************************** EDIT"
 		@evento = Evento.find(params[:id])
 	end
 	
 	def update
-		logger.debug "*************************** UPDATE"
 		@evento = Evento.find(params[:id])
 		if @evento.update(params_evento)
-			logger.debug "Atualizando os valores de "
-			logger.debug params_evento
 			redirect_to action: "index"
 		else
 			render "new"
@@ -92,10 +80,17 @@ class EventosController < ApplicationController
 		@json_eventos = @fullCalendarAdapter.toFullEvent
 		respond_to do |format|
 			format.json { render json: @json_eventos, status: :created }#, location: @eventos }
-			logger.debug "*************************** EVENTOS - GET ALL by aJax" 
 			logger.debug @json_eventos
 		end
 	end
+	
+	def show_many
+		@eventos = Evento.where('data_evento = ?', params[:date])
+		respond_to do |format|
+			format.js
+		end
+	end
+	
 	
 	def fazer_follow_up
 		return true

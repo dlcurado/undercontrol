@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  evento: one
+  descricao: MyText
+  ativa: false
+
+two:
+  evento: two
+  descricao: MyText
+  ativa: false

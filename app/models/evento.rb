@@ -1,10 +1,15 @@
 class Evento < ApplicationRecord
+	#TODO: Revisar ese relacionamento
 	belongs_to :cliente
 	belongs_to :local
-	has_many :historicos, :dependent => :destroy
-	accepts_nested_attributes_for :historicos, :allow_destroy => true
-	#:reject_if => lambda { |a| a[:content].blank? },
 	belongs_to :tipo_evento
+		
+	has_many :historicos, :dependent => :destroy
+	# nao sei pq criou Prospostas como Propostum (plural)
+	has_many :proposta, :dependent => :destroy
+	
+	accepts_nested_attributes_for :historicos, :allow_destroy => true
+	accepts_nested_attributes_for :proposta, :allow_destroy => true
 	
 	
 	#validates :data_evento, presence: true

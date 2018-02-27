@@ -6,9 +6,6 @@ class CreateLocals < ActiveRecord::Migration[5.0]
       t.string :cidade
       t.string :estado
       t.string :telefone
-      t.time :horario_montagem
-      t.time :horario_desmontagem
-
       t.timestamps
     end
   end

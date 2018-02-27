@@ -54,4 +54,13 @@
 		end
 		#.to_formatted_s(:short)
 	end
+	
+	def proposta_ativa
+		proposta.each do |proposta|
+			if proposta.ativa
+				return proposta.descricao
+			end
+		end
+		return "Sem proposta ativa"
+	end
 end
