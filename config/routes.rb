@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   	
   	resources :clientes do
   		resources :eventos
+		collection do
+			get 'get_by_term'
+		end
   	end
   	
   	resources :eventos do

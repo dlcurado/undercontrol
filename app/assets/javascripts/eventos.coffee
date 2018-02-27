@@ -2,13 +2,16 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
+#### Carregando o date picker no formulario de edicao e inclusao de eventos
 $(document).on "turbolinks:load", ->
   $('.datepicker').datepicker({
   	changeMonth: true
   	changeYear: true
   })
 
-data_eventos = []
+  
+#### Carregando o date picker no formulario de edicao e inclusao de eventos
+#data_eventos = []
 #data_eventos_do_dia = []
 
 $(document).on "turbolinks:load", ->
@@ -19,52 +22,32 @@ $(document).on "turbolinks:load", ->
 			type: 'GET'
 			error: ->
 				alert 'Erro'
-			success: (data) ->
-				data_eventos = data
 			}
 		]
 		dayClick: (date, jsEvent, view) ->
 			$.ajax
 				url: '/eventos/show_many'
 				type: 'GET'
-				data:
-					date: date.toJSON()
+				data: date: date.toJSON()
 				error: ->
 					$('.modal').html('Erro').dialog()
 					$('.modal').dialog()
 				success: (data) ->
 					$('.modal').dialog()
   })
+  
 
- 
-# {
-# title: 'Casamento: Claudia'
-# start: '2018-01-13'
-# end: '2018-01-13'
-# backgroundColor: 'red'
-# },{
-# title: 'Casamento: Marcelo',
-# start: '2018-01-13',
-# end: '2018-01-13',
-# backgroundColor: 'red'
-# },{
-# title: 'Casamento: Adriana',
-# start: '2018-01-20',
-# end: '2018-01-20',
-# backgroundColor: 'red'
-# },{
-# title: 'Formatura: ESCOLA',
-# start: '2018-01-01',
-# end: '2018-01-01',
-# backgroundColor: 'green'
-# },{
-# title: 'Corporativo: EPTV',
-# start: '2018-01-27',
-# end: '2018-01-27',
-# backgroundColor: 'blue'
-# },{
-# title: '15 anos: Tais',
-# start: '2018-01-30',
-# end: '2018-01-30',
-# backgroundColor: 'purple'
-# }
+##### Combo auto-complete para nomes dos clientes  
+$(document).on "turbolinks:load", ->
+	$('.combo_autocomplete').autocomplete({
+		source: (request, response) ->
+			$.ajax
+				url: '/clientes/get_by_term'
+				type: 'GET'
+				dataType: 'json'
+				data: term: request.term
+				error: ->
+					alert 'Erro'
+				success: (data) ->
+					response data
+	})

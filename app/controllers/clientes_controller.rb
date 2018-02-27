@@ -67,6 +67,23 @@ class ClientesController < ApplicationController
 		redirect_to clientes_path
 	end
 	
+	##############################################################################
+	######                         AJAX EVENTS                       ########
+	##############################################################################
+	def get_by_term
+		if params.has_key?("term")
+			@clientes = Cliente.where('LOWER(nome) like ?', "%#{params[:term].downcase}%")
+			@clientes_array = Array.new
+			@clientes.each do |cliente|
+				@clientes_array << cliente.nome
+			end
+			
+			respond_to do |format|
+				format.json { render json: @clientes_array, status: :created }#, location: @eventos }
+			end
+		end
+	end
+	
 	private def clientes_params
 		params.require(:cliente).permit(:nome, :telefone, :email)
 	end

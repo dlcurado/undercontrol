@@ -7,20 +7,40 @@ class EventosController < ApplicationController
 		if params.has_key?("commit")
 			logger.debug params[:commit]
 			
+			clientes = nil
+			if (params[:nome].present? && params[:nome] != "Nome Auto Complete")
+				nome = params[:nome].downcase
+				#filtro << ["LOWER(nome) like '%#{nome}%'"]
+				clientes = Cliente.where("LOWER(nome) like '%#{nome}%'")
+			end
+			
+			if (params[:data_evento].present? && params[:data_evento] != 'Data do evento')
+				data_evento = Date.strptime(params[:data_evento], "%m/%d/%Y")
+				filtro << ["data_evento = '#{data_evento}'"]
+			end
+			
 			if params[:evento_status].present?
 				logger.debug "Encontrou o parametro evento_status"
 				id = params[:evento_status]
 				filtro << ["evento_status = #{id.to_i}"]
 			end
-
-			@eventos = Evento.all.where(filtro.join(" AND ")).order("data_evento DESC")
+			
+			if clientes.nil?
+				@eventos = Evento.all.where(filtro.join(" AND ")).order("data_evento DESC")
+			else
+				cliente_todos = Cliente.new
+				clientes.each do |cliente|
+					cliente_todos.eventos << cliente.eventos.where(filtro.join(" AND ")).order("data_evento DESC")
+				end
+				@eventos = cliente_todos.eventos
+			end
+			
 			logger.debug "*************************** COMMIT"			
 		elsif params.has_key?("cliente_id")
 			@cliente = Cliente.find(params[:cliente_id])
 			@eventos = @cliente.eventos
 			logger.debug "*************************** CLIENTE"
 		else
-			@mes_atual = 
 			@eventos = Evento.where("data_evento > ? AND data_evento < ?", 
 				Date.today.beginning_of_month, Date.today.end_of_month)
 				
@@ -80,7 +100,6 @@ class EventosController < ApplicationController
 		@json_eventos = @fullCalendarAdapter.toFullEvent
 		respond_to do |format|
 			format.json { render json: @json_eventos, status: :created }#, location: @eventos }
-			logger.debug @json_eventos
 		end
 	end
 	
