@@ -56,7 +56,7 @@
 	end
 	
 	def proposta_ativa
-		proposta.each do |proposta|
+		propostas.each do |proposta|
 			if proposta.ativa
 				return proposta.descricao
 			end

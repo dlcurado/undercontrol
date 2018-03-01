@@ -10,10 +10,15 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ *= require jquery-ui/core
+ *= require jquery-ui/theme
+ 
  *= require jquery-ui/datepicker
  *= require jquery-ui/menu
  *= require jquery-ui/autocomplete
- *= require jquery-ui
+ *= require jquery-ui/dialog
+ *= require jquery-ui/button
+ 
  *= require font-awesome
  *= require fullcalendar
  *= require_tree .

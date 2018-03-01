@@ -1,0 +1,18 @@
+<%= form_for ([@evento, @evento.propostas.build]) do |form| %>
+	<p>
+		<%= form.label :descricao %>
+		<%= form.text_field :descricao %>
+	</p>
+	
+	<p>
+		<%= form.label :ativa, 'Ativa', value: true %>
+		<%= form.radio_button :ativa, true, :checked => true, :value => true %>
+		
+		<%= form.label :ativa, 'Invalida', value: false %>
+		<%= form.radio_button :ativa, false, :value => false %>
+	</p>
+	
+	<p>
+		<%= form.submit 'OK' %>
+	</p>
+<% end %>

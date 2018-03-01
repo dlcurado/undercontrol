@@ -11,10 +11,18 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery-ui
-// require jquery-ui/widgets/datepicker
-// require jquery-ui/widgets/menu
-// require jquery-ui/widgets/autocomplete
+//= require jquery_ujs
+
+//= require jquery-ui/core
+//= require jquery-ui/widget
+//= require jquery-ui/position
+
+
+//= require jquery-ui/widgets/dialog
+//= require jquery-ui/widgets/datepicker
+//= require jquery-ui/widgets/menu
+//= require jquery-ui/widgets/autocomplete
+
 //= require under_control
 //= require moment
 //= require fullcalendar

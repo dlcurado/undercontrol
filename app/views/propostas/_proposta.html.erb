@@ -1,0 +1,3 @@
+<p>
+	Desca: <%= proposta.descricao %> | Ativo: <%= proposta.ativa %> [<%= link_to 'Ativar', evento_proposta_path(proposta.evento, ativa: true ), method: :put, remote: true %>|<%= link_to 'Desativar', evento_proposta_path(proposta.evento, ativa: false), method: :put, remote: true %>]
+</p>

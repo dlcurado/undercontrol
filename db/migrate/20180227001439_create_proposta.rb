@@ -1,7 +1,7 @@
 class CreateProposta < ActiveRecord::Migration[5.0]
   def change
-    create_table :proposta do |t|
-      t.references :evento, foreign_key: true
+    create_table :propostas do |t|
+      t.belongs_to :evento, index: true, foreign_key: true
       t.text :descricao
       t.boolean :ativa
 

@@ -62,13 +62,13 @@ ActiveRecord::Schema.define(version: 20180227001439) do
     t.string   "email"
   end
 
-  create_table "propostas", force: :cascade do |t|
+  create_table "proposta", force: :cascade do |t|
     t.integer  "evento_id"
     t.text     "descricao"
     t.boolean  "ativa"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["evento_id"], name: "index_propostas_on_evento_id", using: :btree
+    t.index ["evento_id"], name: "index_proposta_on_evento_id", using: :btree
   end
 
   create_table "tipo_eventos", force: :cascade do |t|
@@ -81,5 +81,5 @@ ActiveRecord::Schema.define(version: 20180227001439) do
   add_foreign_key "eventos", "locals"
   add_foreign_key "eventos", "tipo_eventos"
   add_foreign_key "historicos", "eventos"
-  add_foreign_key "propostas", "eventos"
+  add_foreign_key "proposta", "eventos"
 end

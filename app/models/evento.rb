@@ -6,10 +6,10 @@ class Evento < ApplicationRecord
 		
 	has_many :historicos, :dependent => :destroy
 	# nao sei pq criou Prospostas como Propostum (plural)
-	has_many :proposta, :dependent => :destroy
+	has_many :propostas, :dependent => :destroy
 	
 	accepts_nested_attributes_for :historicos, :allow_destroy => true
-	accepts_nested_attributes_for :proposta, :allow_destroy => true
+	accepts_nested_attributes_for :propostas, :allow_destroy => true
 	
 	
 	#validates :data_evento, presence: true

@@ -45,6 +45,21 @@
   </p>
   
   <p>
+  	Propostas:<br />
+	<%= form.fields_for :propostas do |proposta| %>
+		<%= proposta.text_field :descricao %> (<%= proposta.text_field :ativa %>) 
+		[
+			<%= link_to 'Ativar', evento_proposta_path(@evento, proposta.object.id, ativa: true ), remote: true, :method => :put %> | 
+			<%= link_to 'Desativar', evento_proposta_path(@evento, proposta.object.id, ativa: false ), remote: true, method: :put %>
+		]<br />
+	<% end %>
+
+  </p>
+  <p>
+  	<%= link_to 'Adicionar proposta', new_evento_proposta_path(@evento) %>
+  </p>
+  
+  <p>
     <%= form.submit "Salvar" %>
   </p>
 <% end %>

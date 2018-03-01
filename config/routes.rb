@@ -16,21 +16,17 @@ Rails.application.routes.draw do
   	
   	resources :eventos do
   		resources :historicos
+		resources :propostas
 		collection do
 			get 'get_all'
 			get 'show_many'
 		end
   	end
   	
-  	resources :historicos
+  	# resources :historicos
   	resources :locals
   	resources :tipo_eventos
+	# resources :propostas
   	
-#  	resources :eventos do
-#  		resources :historicos
-#  	end
-#  	
-#  	resources :clientes do
-#  		resources :eventos
-#  	end	
+
 end
