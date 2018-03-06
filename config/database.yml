@@ -2,6 +2,7 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  schema_search_path: myapp,sharedapp,public
   username: UnderControl
   password: admin123
   host: localhost
@@ -11,25 +12,13 @@ default: &default
 development:
   <<: *default
   database: djsonorizacao_dev
-  schema_search_path: myapp,sharedapp,public
   
 
 test:
   <<: *default
-  #database: djsonorizacao_test
-  #schema_search_path: myapp,sharedapp,public
-  database: <%= ENV['RDS_DB_NAME'] %>
-  username: <%= ENV['RDS_USERNAME'] %>
-  password: <%= ENV['RDS_PASSWORD'] %>
-  host: <%= ENV['RDS_HOSTNAME'] %>
-  port: <%= ENV['RDS_PORT'] %>
-
+  database: djsonorizacao_test
+  
 production:
   <<: *default
-#database: djsonorizacao_production
-#schema_search_path: myapp,sharedapp,public
-  database: <%= ENV['RDS_DB_NAME'] %>
-  username: <%= ENV['RDS_USERNAME'] %>
-  password: <%= ENV['RDS_PASSWORD'] %>
-  host: <%= ENV['RDS_HOSTNAME'] %>
-  port: <%= ENV['RDS_PORT'] %>
+  database: djsonorizacao_production
+  password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
