@@ -44,20 +44,43 @@
   	Status do evento: <%= form.select :evento_status, Evento::STATUS.map{|status| [status[1], status[0]]} %>
   </p>
   
-  <p>
-  	Propostas:<br />
-	<%= form.fields_for :propostas do |proposta| %>
-		<%= proposta.text_field :descricao %> (<%= proposta.text_field :ativa %>) 
-		[
-			<%= link_to 'Ativar', evento_proposta_path(@evento, proposta.object.id, ativa: true ), remote: true, :method => :put %> | 
-			<%= link_to 'Desativar', evento_proposta_path(@evento, proposta.object.id, ativa: false ), remote: true, method: :put %>
-		]<br />
-	<% end %>
+  <!-- ###### PROPOSTSAS ##### -->
+  <% if !@evento.propostas.empty? %>
+	  <p>
+		Propostas:<br />
+		<%= form.fields_for :propostas do |proposta| %>
+			<%= proposta.text_field :descricao %> (<%= proposta.text_field :ativa %>) 
+			[
+				<%= link_to 'Ativar', evento_proposta_path(@evento, proposta.object.id, ativa: true ), remote: true, :method => :put %> | 
+				<%= link_to 'Desativar', evento_proposta_path(@evento, proposta.object.id, ativa: false ), remote: true, method: :put %>
+			]<br />
+		<% end %>
 
-  </p>
-  <p>
-  	<%= link_to 'Adicionar proposta', new_evento_proposta_path(@evento) %>
-  </p>
+	  </p>
+  <% end %>
+  
+  <% if !@evento.id.nil? %>
+  	  <p>
+		<%= link_to 'Adicionar proposta', new_evento_proposta_path(@evento) %>
+	  </p>
+  <% end %>
+  
+  <!-- ###### HISTORICOS ##### -->
+  <% if !@evento.historicos.empty? %>
+	  <p>
+		Propostas:<br />
+		<%= form.fields_for :historicos do |historico| %>
+			<%= historico.text_field :descricao %>
+			<br />
+		<% end %>
+	  </p>
+  <% end %>
+  
+  <% if !@evento.id.nil? %>
+  	  <p>
+		<%= link_to 'Adicionar historico', new_evento_historico_path(@evento) %>
+	  </p>
+  <% end %>
   
   <p>
     <%= form.submit "Salvar" %>

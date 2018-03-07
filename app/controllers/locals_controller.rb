@@ -1,7 +1,22 @@
 class LocalsController < ApplicationController
 	def index
-		logger.debug "*************************** INDEX"
-		@locais = Local.all
+		if params.has_key?("commit")
+		 filtro = []
+		   if params[:nome_local].present? && params[:nome_local] != "Nome do Local"
+				nome_local = params[:nome_local]
+				filtro << ["LOWER(nome) like '%#{nome_local.downcase}%'"]
+		   end
+		   
+		   if params[:nome_contato].present? && params[:nome_contato] != "Nome do Contato"
+				nome_contato = params[:nome_contato]
+				filtro << ["LOWER(nome_contato) like '%#{nome_contato.downcase}%'"]
+		   end
+		   
+		   @locais = Local.all.where(filtro.join(" AND "))
+	   else
+		   @locais = Local.all
+	   end
+
 	end
 	
 	def show

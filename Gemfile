@@ -68,3 +68,6 @@ gem 'font-awesome-rails'
 gem 'fullcalendar-rails'
 
 gem 'momentjs-rails'
+
+
+ruby "2.4.0"

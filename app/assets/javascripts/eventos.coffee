@@ -7,13 +7,11 @@ $(document).on "turbolinks:load", ->
   $('.datepicker').datepicker({
   	changeMonth: true
   	changeYear: true
+  	dateFormat: 'dd/mm/yy'
   })
 
   
-#### Carregando o date picker no formulario de edicao e inclusao de eventos
-#data_eventos = []
-#data_eventos_do_dia = []
-
+#### CARREGANDO O FULL CALENDAR
 $(document).on "turbolinks:load", ->
   $('#calendar').fullCalendar({
 		eventSources: [
@@ -38,8 +36,14 @@ $(document).on "turbolinks:load", ->
   
 
 ##### Combo auto-complete para nomes dos clientes  
+#$(document).on "turbolinks:load", ->
+#	$('.combo_autocomplete').focus ->
+#		@value = ''
+
 $(document).on "turbolinks:load", ->
-	$('.combo_autocomplete').autocomplete({
+	$('.combo_autocomplete').focus ->
+		@value = ''
+	$('.combo_autocomplete.nome').autocomplete({
 		source: (request, response) ->
 			$.ajax
 				url: '/clientes/get_by_term'

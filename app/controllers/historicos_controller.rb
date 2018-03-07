@@ -42,7 +42,7 @@ class HistoricosController < ApplicationController
 		logger.debug "*************************** CREATE HISTORICO"
 		@evento = Evento.find(params[:evento_id])
 		@historico = @evento.historicos.create(historico_params)
-		redirect_to evento_path(@evento)
+		redirect_to edit_evento_path(@evento)
 	end
 	
 	def destroy

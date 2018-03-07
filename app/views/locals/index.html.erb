@@ -1,7 +1,7 @@
 <div id="filters">
-  <%= form_tag(eventos_path, method: "get") do %>
-	<%= text_field_tag :nome_local, 'Nome do Local', class: "combo_autocomplete" %>
-	<%= text_field_tag :nome_contato, 'Nome do Contato', class: "combo_autocomplete" %>
+  <%= form_tag(locals_path, method: "get") do %>
+	<%= text_field_tag :nome_local, 'Nome do Local', class: "combo_autocomplete nome-local" %>
+	<%= text_field_tag :nome_contato, 'Nome do Contato', class: "combo_autocomplete nome-contato-local" %>
 	<%= submit_tag "Filtrar" %>
   <% end %>
 <div>

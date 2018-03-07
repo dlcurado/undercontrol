@@ -23,7 +23,6 @@
 //= require jquery-ui/widgets/menu
 //= require jquery-ui/widgets/autocomplete
 
-//= require under_control
 //= require moment
 //= require fullcalendar
 //= require turbolinks

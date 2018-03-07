@@ -5,22 +5,20 @@ class EventosController < ApplicationController
 		filtro = []
 
 		if params.has_key?("commit")
-			logger.debug params[:commit]
-			
+			logger.debug "*************************** INDEX - Filtros da pagina de listagem"
+		
 			clientes = nil
 			if (params[:nome].present? && params[:nome] != "Nome Auto Complete")
 				nome = params[:nome].downcase
-				#filtro << ["LOWER(nome) like '%#{nome}%'"]
 				clientes = Cliente.where("LOWER(nome) like '%#{nome}%'")
 			end
 			
 			if (params[:data_evento].present? && params[:data_evento] != 'Data do evento')
-				data_evento = Date.strptime(params[:data_evento], "%m/%d/%Y")
+				data_evento = Date.strptime(params[:data_evento], "%d/%m/%Y")
 				filtro << ["data_evento = '#{data_evento}'"]
 			end
 			
 			if params[:evento_status].present?
-				logger.debug "Encontrou o parametro evento_status"
 				id = params[:evento_status]
 				filtro << ["evento_status = #{id.to_i}"]
 			end
@@ -35,18 +33,17 @@ class EventosController < ApplicationController
 				@eventos = cliente_todos.eventos
 			end
 			
-			logger.debug "*************************** COMMIT"			
 		elsif params.has_key?("cliente_id")
+			logger.debug "*************************** INDEX - Listando um cliente só"
 			@cliente = Cliente.find(params[:cliente_id])
 			@eventos = @cliente.eventos
-			logger.debug "*************************** CLIENTE"
 		else
+			logger.debug "*************************** INDEX - Eventos por um período"
 			@eventos = Evento.where("data_evento > ? AND data_evento < ?", 
 				Date.today.beginning_of_month, Date.today.end_of_month)
 				
 			@eventos_by_date = @eventos.group_by(&:data_evento)
 			@date = params[:date] ? Date.parse(params[:date]) : Date.today
-			logger.debug "*************************** EVENTOS"			
 		end
 		
 	end
@@ -57,7 +54,13 @@ class EventosController < ApplicationController
 	
 	
 	def new
+		logger.debug "*************************** NEW"
 		@evento = Evento.new
+		if @evento.propostas.empty?
+			logger.debug "true"
+		else
+			logger.debug "false"
+		end 
 	end
 	
 	def create
@@ -72,12 +75,22 @@ class EventosController < ApplicationController
 	end
 	
 	def edit
+		logger.debug "*************************** EDIT"
 		@evento = Evento.find(params[:id])
+
+		if @evento.propostas.empty?
+			logger.debug "true"
+		else
+			logger.debug "false"
+		end 
 	end
 	
 	def update
 		@evento = Evento.find(params[:id])
+		logger.debug @evento
+		logger.debug params_evento
 		if @evento.update(params_evento)
+			logger.debug @evento.data_evento
 			redirect_to action: "index"
 		else
 			render "new"
@@ -118,6 +131,7 @@ class EventosController < ApplicationController
 	private def params_evento
 		params.require(:evento).permit(:id, :cliente_id, :data_evento, :local_id,
 			:tipo_evento_id, :evento_status, :hora_montagem, :hora_desmontagem, 
-			historicos_attributes: [:id, :descricao, :created_at])
+			historicos_attributes: [:id, :descricao],
+			propostas_attributes: [:id, :descricao, :ativa])
 	end
 end
