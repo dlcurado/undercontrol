@@ -4,17 +4,17 @@ class ClientesController < ApplicationController
 		 filtro = []
 		   if params[:cliente].present? && params[:cliente] != "Nome"
 				nome = params[:cliente]
-				filtro << ["nome like '#{nome}%'"]
+				filtro << ["LOWER(nome) like '%#{nome.downcase}%'"]
 		   end
 		   
-		   if params[:telefone].present?
+		   if params[:telefone].present? && params[:telefone] != "Telefone"
 				telefone = params[:telefone]
-				filtro << ["telefone like '#{telefone}%'"]
+				filtro << ["LOWER(telefone) like '%#{telefone.downcase}%'"]
 		   end
 		   
-		   if params[:email].present?
+		   if params[:email].present? && params[:email] != "E-mail"
 				email = params[:email]
-				filtro << ["email like '#{email}%'"]
+				filtro << ["LOWER(email) like '%#{email.downcase}%'"]
 		   end
 
 		   @clientes = Cliente.all.where(filtro.join(" AND "))

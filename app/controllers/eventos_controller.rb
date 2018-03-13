@@ -8,7 +8,7 @@ class EventosController < ApplicationController
 			logger.debug "*************************** INDEX - Filtros da pagina de listagem"
 		
 			clientes = nil
-			if (params[:nome].present? && params[:nome] != "Nome Auto Complete")
+			if (params[:nome].present? && params[:nome] != "Nome")
 				nome = params[:nome].downcase
 				clientes = Cliente.where("LOWER(nome) like '%#{nome}%'")
 			end
@@ -55,7 +55,11 @@ class EventosController < ApplicationController
 	
 	def new
 		logger.debug "*************************** NEW"
+		
 		@evento = Evento.new
+		@evento.build_cliente
+		@evento.build_local
+		
 		if @evento.propostas.empty?
 			logger.debug "true"
 		else
@@ -64,8 +68,10 @@ class EventosController < ApplicationController
 	end
 	
 	def create
-		@cliente = Cliente.find(params_evento[:cliente_id])
+		#@cliente = Cliente.find(params_evento[:cliente])
+		@cliente = Cliente.new(params_evento[:cliente_attributes])
 		@evento = @cliente.eventos.new(params_evento)
+		@evento.local = Local.new(params_evento[:local_attributes])
 		
 		if @evento.save
 			redirect_to action: "index"
@@ -77,6 +83,7 @@ class EventosController < ApplicationController
 	def edit
 		logger.debug "*************************** EDIT"
 		@evento = Evento.find(params[:id])
+		#@evento.cliente.build
 
 		if @evento.propostas.empty?
 			logger.debug "true"
@@ -129,8 +136,10 @@ class EventosController < ApplicationController
 	end
 	
 	private def params_evento
-		params.require(:evento).permit(:id, :cliente_id, :data_evento, :local_id,
+		params.require(:evento).permit(:id, :data_evento, :local_id,
 			:tipo_evento_id, :evento_status, :hora_montagem, :hora_desmontagem, 
+			cliente_attributes: [:id, :nome, :telefone, :email],
+			local_attributes: [:id, :nome, :endereco, :cidade, :estado],
 			historicos_attributes: [:id, :descricao],
 			propostas_attributes: [:id, :descricao, :ativa])
 	end

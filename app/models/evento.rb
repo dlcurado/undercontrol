@@ -8,6 +8,8 @@ class Evento < ApplicationRecord
 	# nao sei pq criou Prospostas como Propostum (plural)
 	has_many :propostas, :dependent => :destroy
 	
+	accepts_nested_attributes_for :cliente, :allow_destroy => true, :update_only => true
+	accepts_nested_attributes_for :local, :allow_destroy => true, :update_only => true
 	accepts_nested_attributes_for :historicos, :allow_destroy => true
 	accepts_nested_attributes_for :propostas, :allow_destroy => true
 	
@@ -36,4 +38,15 @@ class Evento < ApplicationRecord
 		5 => 'Visitado',
 		6 => 'Não fechado'
 	}.freeze
+	
+	def self.estado 
+		[
+		 'Aberto', 
+		 'Aguardando', 
+		 'Enviado',
+		 'Fechado',
+		 'Visitado',
+		 'Não fechado'
+		]
+	end
 end

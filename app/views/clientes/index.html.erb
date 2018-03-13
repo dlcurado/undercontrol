@@ -1,6 +1,6 @@
 <div id="filters">
   <%= form_tag(clientes_path, method: "get") do %>
-	<%= text_field_tag :cliente, 'Nome', class: "combo_autocomplete nome", value: params[:nome].nil? ? 'Nome' : params[:nome] %>
+	<%= text_field_tag :cliente, 'Nome', class: "combo_autocomplete nome", value: params[:cliente].nil? ? 'Nome' : params[:cliente] %>
 	<%= text_field_tag :telefone, 'Telefone', class: "combo_autocomplete telefone", value: params[:telefone].nil? ? 'Telefone' : params[:telefone] %>
 	<%= text_field_tag :email, 'E-mail', class: "combo_autocomplete email", value: params[:email].nil? ? 'E-mail' : params[:email] %>
 	<%= submit_tag "Filtrar" %>

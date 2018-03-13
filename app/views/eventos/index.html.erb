@@ -1,7 +1,7 @@
 <div id="filters">
   <%= form_tag(eventos_path, method: "get") do %>
-	<%= text_field_tag :nome, 'Nome Auto Complete' , class: "combo_autocomplete", value: params[:nome].nil? ? 'Nome Auto Complete' : params[:nome] %>
-	<%= text_field_tag :data_evento, 'Data do evento', class: "datepicker", value: params[:data_evento] %>
+	<%= text_field_tag :nome, 'Nome' , class: "combo_autocomplete", value: params[:nome].nil? ? 'Nome' : params[:nome] %>
+	<%= text_field_tag :data_evento, 'Data do evento', class: "datepicker", value: params[:data_evento].nil? ? 'Data do evento' : params[:data_evento] %>
 	<%= select_tag(:evento_status, options_from_collection_for_select(Evento::STATUS, :first, :last), {prompt: 'Status do evento'} ) %>
 	<%= submit_tag "Filtrar" %>
   <% end %>

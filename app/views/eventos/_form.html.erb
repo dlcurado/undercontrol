@@ -15,18 +15,40 @@
     </div>
   <% end %>
 
-
+  <!-- ********* DADOS DO CLIENTES ********* -->
+  <hr />
   <p>
-  	Cliente: <%= form.collection_select(:cliente_id, Cliente.all, :id, :nome) %>
+  	Cliente: <%= text_field_tag :nome, 'Nome' , class: "combo_autocomplete nome", value: params[:nome].nil? ? 'Nome' : params[:nome] %>
   </p>
-	
+  <p>	
+  		<%= form.fields_for :cliente do |cli| %>
+  			<%= cli.label :nome %><%= cli.text_field :nome %><br />
+  			<%= cli.label :telefone %><%= cli.text_field :telefone %><br />
+  			<%= cli.label :email %><%= cli.text_field :email %><br />
+  		<% end %>
+
+  </p>
+  <hr />
+  
   <p>
     Data do Evento: <%= form.text_field :data_evento, class: 'datepicker' %>
   </p>
 
+  <!-- ********* DADOS DO LOCAL ********* -->
+  <hr />
   <p>
   	Local do Evento: <%= form.collection_select(:local_id, Local.all, :id, :nome) %>
   </p>
+  <p>	
+  		<%= form.fields_for :local do |local| %>
+  			<%= local.label :nome %><%= local.text_field :nome %><br />
+  			<%= local.label :endereco %><%= local.text_field :endereco %><br />
+  			<%= local.label :cidade %><%= local.text_field :cidade %><br />
+  			<%= local.label :estado %><%= local.text_field :estado %>
+  		<% end %>
+
+  </p>
+  <hr />
   
   <p>
   	Tipo de Evento: <%= form.collection_select(:tipo_evento_id, TipoEvento.all, :id, :descricao) %>
@@ -68,7 +90,7 @@
   <!-- ###### HISTORICOS ##### -->
   <% if !@evento.historicos.empty? %>
 	  <p>
-		Propostas:<br />
+		Histórico:<br />
 		<%= form.fields_for :historicos do |historico| %>
 			<%= historico.text_field :descricao %>
 			<br />
