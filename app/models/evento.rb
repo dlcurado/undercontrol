@@ -38,15 +38,4 @@ class Evento < ApplicationRecord
 		5 => 'Visitado',
 		6 => 'Não fechado'
 	}.freeze
-	
-	def self.estado 
-		[
-		 'Aberto', 
-		 'Aguardando', 
-		 'Enviado',
-		 'Fechado',
-		 'Visitado',
-		 'Não fechado'
-		]
-	end
 end

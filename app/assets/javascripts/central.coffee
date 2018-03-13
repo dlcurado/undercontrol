@@ -3,13 +3,17 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $(document).on "turbolinks:load", ->
 	$('.central-status').click (e, arg) ->
+		all_status = []
+		$(".central-status:checked").each ->
+    		all_status.push($(this).val())
+
 		events = 
     		url: 'eventos/get_all'
     		type: 'GET'
-    		data: status: $(this).val()
-  		$('#calendar').fullCalendar 'removeEventSource'
+    		data: status: all_status
+  		$('#calendar').fullCalendar 'removeEventSources'
   		$('#calendar').fullCalendar 'addEventSource', events
-  		$('#calendar').fullCalendar 'refetchEvents', events
+  		#$('#calendar').fullCalendar 'refetchEvents', events
   
 
 

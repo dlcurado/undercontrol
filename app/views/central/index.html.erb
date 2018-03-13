@@ -3,9 +3,9 @@
 		<p>Sistema de gestão de eventos</p>
 		<p>Essa página será destinada à gerar uma visão gráfica dos indicadores da empresa.</p>
 		<p>
-			<% Evento.estado.each do |sta| %>
-				<%= check_box_tag "central-status", sta, false, class: 'central-status' %>
-				<%= label_tag(":central-status-'#{sta}'", sta) %>
+			<% Evento::STATUS.each do |sta| %>
+				<%= check_box_tag "central-status", sta[0], false, class: 'central-status' %>
+				<%= label_tag(":central-status-'#{sta}'", sta[1]) %>
 				<br />
 		 	<% end %>
 		</p>

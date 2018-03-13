@@ -115,7 +115,23 @@ class EventosController < ApplicationController
 	######                         AJAX EVENTS                       ########
 	##############################################################################
 	def get_all
-		@eventos = Evento.where("data_evento > ? AND data_evento < ?", params[:start], params[:end])
+		
+		filtro = []
+		
+		if (params[:start].present? && params[:end].present?)
+			filtro << ["data_evento > '#{params[:start]}' AND data_evento < '#{params[:end]}'"]
+		end
+		 
+			
+		if (params[:status].present?)
+			array_status = params[:status].map(&:to_i)
+			str_status = "evento_status in (" + array_status.join(" , ") + ")"
+			filtro << str_status
+		end
+			
+		@eventos = Evento.where(filtro.join(" AND ")).order("data_evento DESC")
+		
+		
 		@fullCalendarAdapter = Adapter::FullcalendarEventAdapter.new(@eventos)
 		@json_eventos = @fullCalendarAdapter.toFullEvent
 		respond_to do |format|
