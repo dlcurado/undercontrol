@@ -2,13 +2,13 @@
 	<div id="central-esquerda">
 		<p>Sistema de gestão de eventos</p>
 		<p>Essa página será destinada à gerar uma visão gráfica dos indicadores da empresa.</p>
-		<p>
+		<div id="filtro-eventos-agenda-central">
 			<% Evento::STATUS.each do |sta| %>
-				<%= check_box_tag "central-status", sta[0], false, class: 'central-status' %>
-				<%= label_tag(":central-status-'#{sta}'", sta[1]) %>
-				<br />
+				   <%= check_box_tag "central-status-#{sta[0]}", sta[0], false, class: 'central-status' %>
+				   <%= label_tag("central-status-#{sta[0]}", sta[1], class:  'central-status') %>
+				   <p class="central-status"><%= sta[1] %></p>
 		 	<% end %>
-		</p>
+		</div>
 	</div>
 	<div id="calendar"></div>
 </div>

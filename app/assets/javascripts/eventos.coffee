@@ -10,8 +10,10 @@ $(document).on "turbolinks:load", ->
   	dateFormat: 'dd/mm/yy'
   })
 
-  
-#### CARREGANDO O FULL CALENDAR
+# 
+# Carrega o Fullcalendar da tela central, com os eventos de acordo com o filtro do controller
+# Também adiciona o click na data da agenda, para mostrar os eventos do dia
+#
 $(document).on "turbolinks:load", ->
   $('#calendar').fullCalendar({
 		eventSources: [

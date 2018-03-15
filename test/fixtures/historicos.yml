@@ -2,8 +2,6 @@
 
 one:
   descricao: MyText
-  cliente: one
 
 two:
   descricao: MyText
-  cliente: two

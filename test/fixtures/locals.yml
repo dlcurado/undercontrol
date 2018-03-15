@@ -6,8 +6,6 @@ one:
   cidade: MyString
   estado: MyString
   telefone: MyString
-  horario_montagem: 2017-10-18 16:21:41
-  horario_desmontagem: 2017-10-18 16:21:41
 
 two:
   nome: MyString
@@ -15,5 +13,3 @@ two:
   cidade: MyString
   estado: MyString
   telefone: MyString
-  horario_montagem: 2017-10-18 16:21:41
-  horario_desmontagem: 2017-10-18 16:21:41
