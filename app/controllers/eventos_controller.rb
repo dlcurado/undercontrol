@@ -3,34 +3,75 @@ class EventosController < ApplicationController
 		logger.debug "*************************** INDEX"
 		
 		filtro = []
+		@mes_default = 0 #Date.today
+		@ano_default = 0 #Date.today
+
 
 		if params.has_key?("commit")
 			logger.debug "*************************** INDEX - Filtros da pagina de listagem"
 		
 			clientes = nil
+			
+			############################################################
+			#######  FILTRO POR NOME 
+			############################################################
 			if (params[:nome].present? && params[:nome] != "Nome")
 				nome = params[:nome].downcase
 				clientes = Cliente.where("LOWER(nome) like '%#{nome}%'")
+				#cliente = Cliente.where("LOWER(nome) like '%#{nome}%'")
 			end
 			
-			if (params[:data_evento].present? && params[:data_evento] != 'Data do evento')
-				data_evento = Date.strptime(params[:data_evento], "%d/%m/%Y")
-				filtro << ["data_evento = '#{data_evento}'"]
+			
+			############################################################
+			#######  FILTRO POR MES 
+			############################################################
+			if params[:date].present? && (params[:date][:mes] != "" || params[:date][:ano] != "")
+				data_evento = "01/#{params[:date][:mes]}/#{params[:date][:ano]}".to_date
+				logger.debug data_evento
+				data_evento_comeco = data_evento.at_beginning_of_month
+				data_evento_fim = data_evento.at_end_of_month
+				filtro << ["data_evento > '#{data_evento_comeco}' AND data_evento < '#{data_evento_fim}'"]
+				
+				@mes_default = params[:date][:mes].to_i()
+				@ano_default = params[:date][:ano].to_i()
 			end
 			
+			
+			############################################################
+			#######  FILTRO POR STATUS 
+			############################################################
 			if params[:evento_status].present?
 				id = params[:evento_status]
 				filtro << ["evento_status = #{id.to_i}"]
 			end
 			
 			if clientes.nil?
-				@eventos = Evento.all.where(filtro.join(" AND ")).order("data_evento DESC")
+				@eventos = Evento.all.where(filtro.join(" AND "))
 			else
-				cliente_todos = Cliente.new
+				logger.debug "*********** PEsquisa por clientes"
+				#cliente_todos = Cliente.new
+				#cliente_todos.eventos.build
+				
 				clientes.each do |cliente|
-					cliente_todos.eventos << cliente.eventos.where(filtro.join(" AND ")).order("data_evento DESC")
+				#	logger.debug "*********** Agrupando os eventos"
+				#	teste = cliente.eventos.where(filtro.join(" AND "))
+				#	logger.debug "*********** Agrupando os eventos - TESTE "
+				#	logger.debug teste.count
+					
+					
+				#	cliente_todos.eventos << teste #cliente.eventos.where(filtro.join(" AND "))
+					#@eventos = []
+					#@eventos << cliente.eventos.where(filtro.join(" AND "))
+					#logger.debug @eventos.count
+				#	logger.debug "*********** Agrupando os eventos - TESTE - Cliente New"
+				#	logger.debug cliente_todos.eventos.count
+				    #if @eventos.nil?
+						@eventos = cliente.eventos.where(filtro.join(" AND "))
+					#else
+					#	@eventos << cliente.eventos.where(filtro.join(" AND "))
+					#end
 				end
-				@eventos = cliente_todos.eventos
+				#@eventos = cliente_todos.eventos
 			end
 			
 		elsif params.has_key?("cliente_id")
@@ -42,14 +83,20 @@ class EventosController < ApplicationController
 			@eventos = Evento.where("data_evento > ? AND data_evento < ?", 
 				Date.today.beginning_of_month, Date.today.end_of_month)
 				
+				
 			@eventos_by_date = @eventos.group_by(&:data_evento)
 			@date = params[:date] ? Date.parse(params[:date]) : Date.today
 		end
 		
+		@eventos = @eventos.order("data_evento") 
 	end
 	
 	def show
 		@evento = Evento.find(params[:id])
+		respond_to do |format|
+		    format.html
+			format.js
+		end
 	end
 	
 	
@@ -153,7 +200,8 @@ class EventosController < ApplicationController
 	
 	private def params_evento
 		params.require(:evento).permit(:id, :data_evento, :local_id,
-			:tipo_evento_id, :evento_status, :hora_montagem, :hora_desmontagem, 
+			:tipo_evento_id, :evento_status,
+			:data_montagem, :hora_montagem, :data_desmontagem, :hora_desmontagem, 
 			cliente_attributes: [:id, :nome, :telefone, :email],
 			local_attributes: [:id, :nome, :endereco, :cidade, :estado],
 			historicos_attributes: [:id, :descricao],

@@ -1,5 +1,13 @@
 	<p>Tipo do Evento: <%= evento.tipo_evento.descricao %></p>
 	<p>Cliente: <%= evento.cliente.nome %></p>
-	<p>Proposta: <%= evento.proposta_ativa %></p>
+	<p>Local: <%= evento.local.nome %> (<%= evento.local.endereco %> - <%= evento.local.cidade %>/<%= evento.local.estado %>)</p>
+	
+	<p>Proposta: <%= evento.proposta_ativa.id %> - <%= evento.proposta_ativa.descricao %></p>
+	
 	<p>Status: <%= Evento::STATUS[evento.evento_status] %></p>
-	<hr />
+
+
+	
+	<p>Data do Evento: <%= evento.data_evento %></p>
+	<p>Montagem/Desmontagem: <%= evento.data_montagem %> <%= evento.hora_montagem %> / 
+	<%= evento.data_desmontagem %> <%= evento.hora_desmontagem %></p>

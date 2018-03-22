@@ -1,9 +1,16 @@
-<%= form_for ([@evento, @evento.propostas.build]) do |form| %>
+<%= form_for ([proposta.evento, proposta]) do |form| %>
+	<p>
+		<%= form.label :numero %>
+		<%= form.text_field :numero %>
+	</p>
 	<p>
 		<%= form.label :descricao %>
 		<%= form.text_field :descricao %>
 	</p>
-	
+	<p>
+		<%= form.label :valor %>
+		<%= form.text_field :valor %>
+	</p>
 	<p>
 		<%= form.label :ativa, 'Ativa', value: true %>
 		<%= form.radio_button :ativa, true, :checked => true, :value => true %>

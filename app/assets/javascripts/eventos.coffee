@@ -9,38 +9,7 @@ $(document).on "turbolinks:load", ->
   	changeYear: true
   	dateFormat: 'dd/mm/yy'
   })
-
-# 
-# Carrega o Fullcalendar da tela central, com os eventos de acordo com o filtro do controller
-# Também adiciona o click na data da agenda, para mostrar os eventos do dia
-#
-$(document).on "turbolinks:load", ->
-  $('#calendar').fullCalendar({
-		eventSources: [
-			{
-			url: '/eventos/get_all'
-			type: 'GET'
-			error: ->
-				alert 'Erro'
-			}
-		]
-		dayClick: (date, jsEvent, view) ->
-			$.ajax
-				url: '/eventos/show_many'
-				type: 'GET'
-				data: date: date.toJSON()
-				error: ->
-					$('.modal').html('Erro').dialog()
-					$('.modal').dialog()
-				success: (data) ->
-					$('.modal').dialog()
-  })
   
-
-##### Combo auto-complete para nomes dos clientes  
-#$(document).on "turbolinks:load", ->
-#	$('.combo_autocomplete').focus ->
-#		@value = ''
 
 $(document).on "turbolinks:load", ->
 	$('.combo_autocomplete').focus ->
@@ -57,3 +26,21 @@ $(document).on "turbolinks:load", ->
 				success: (data) ->
 					response data
 	})
+
+
+
+$(document).on "turbolinks:load", ->
+   $('.container .card .action a[data-remote]').on "ajax:success", (e, data, status, xhr) ->
+      $('.modal').dialog({
+         modal: true
+         height: 600
+         width: 800
+         position: { my: "center", at: "center" }
+      })
+      return
+
+$(document).on "turbolinks:load", ->
+   $('.container .card .action a[data-remote]').on "ajax:error", (e, data, status, error) ->
+      $('.modal').html(error).dialog()
+      $('.modal').dialog()
+      return

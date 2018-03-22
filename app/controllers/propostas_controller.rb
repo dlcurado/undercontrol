@@ -30,12 +30,13 @@ class PropostasController < ApplicationController
 	
 	def edit
 		logger.debug "####### EDIT"
+		@evento = Evento.find(params[:evento_id])
 		@proposta = Proposta.find(params[:id])
 		if params[:ativa].present?
 			@evento = @proposta.evento
 			@evento.propostas.each do |proposta|
 				proposta.id != @proposta.id ? proposta.update(ativa: false) : proposta.update(ativa: true)
-				redirect_to :back
+				redirect_to edit_evento_path @evento 
 			end
 		end
 	end
@@ -49,22 +50,24 @@ class PropostasController < ApplicationController
 	def update
 		logger.debug "####### UPDATE"
 		@proposta = Proposta.find(params[:id])
+		@evento = @proposta.evento
 		if params[:ativa].present? && ActiveModel::Type::Boolean.new.cast(params[:ativa]) == true
 			# Ja que esta ativando uma proposta, precisamos desativar todas as outras
 			logger.debug "####### UPDATE - Atualizando todas as propostas"
-			@evento = @proposta.evento
 			@evento.propostas.each do |proposta_desativa|
 				proposta_desativa.update(ativa: false)
 				logger.debug "####### UPDATE - Atualizando todas as propostas - " + proposta_desativa.descricao + " || STATUS = FALSE"
 			end
 		end
 		# Depois e so ajustar o status da proposta em questao
-		@proposta.update(ativa: ActiveModel::Type::Boolean.new.cast(params[:ativa]))
-		redirect_to :back
+		#@proposta.update(ativa: ActiveModel::Type::Boolean.new.cast(params[:ativa]))
+		@proposta.update(proposta_params)
+		
+		redirect_to edit_evento_path @evento
 	end
 	
 	private def proposta_params
-		params.require(:proposta).permit(:descricao, :ativa)
+		params.require(:proposta).permit(:numero, :descricao, :valor, :ativa)
 	end
 	
 end

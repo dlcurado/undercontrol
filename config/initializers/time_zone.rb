@@ -1,3 +1,3 @@
 # Application Time Zone 
-#Time.zone = "America/Sao_Paulo"
+Time.zone = "America/Sao_Paulo"
 

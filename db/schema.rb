@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180227001439) do
+ActiveRecord::Schema.define(version: 20180321142632) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,8 +28,8 @@ ActiveRecord::Schema.define(version: 20180227001439) do
   create_table "eventos", force: :cascade do |t|
     t.integer  "cliente_id"
     t.datetime "data_evento"
-    t.datetime "hora_montagem"
-    t.datetime "hora_desmontagem"
+    t.time     "hora_montagem"
+    t.time     "hora_desmontagem"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
     t.integer  "tipo_evento_id"
@@ -37,6 +37,8 @@ ActiveRecord::Schema.define(version: 20180227001439) do
     t.integer  "local_id"
     t.string   "observacao"
     t.string   "quantidade_horas"
+    t.date     "data_montagem"
+    t.date     "data_desmontagem"
     t.index ["cliente_id"], name: "index_eventos_on_cliente_id", using: :btree
     t.index ["local_id"], name: "index_eventos_on_local_id", using: :btree
     t.index ["tipo_evento_id"], name: "index_eventos_on_tipo_evento_id", using: :btree
@@ -68,6 +70,8 @@ ActiveRecord::Schema.define(version: 20180227001439) do
     t.boolean  "ativa"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "numero"
+    t.decimal  "valor"
     t.index ["evento_id"], name: "index_propostas_on_evento_id", using: :btree
   end
 

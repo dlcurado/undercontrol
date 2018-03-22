@@ -7,7 +7,7 @@
 	width: 800px;
 	
 	td, th {
-		font-family: "Lucida Grande", arial, helvetica, sans-serif;
+		/*font-family: "Lucida Grande", arial, helvetica, sans-serif;*/
 		font-size: 10px;
 		padding: 6px;
 		border: 1px solid #999;
@@ -40,4 +40,43 @@
 #calendario_eventos ul {
 	font-size: 11px;
 	padding_left: 20px;
+}
+
+
+div#proposta {
+    height: 30px;
+    border-bottom: solid 1px;
+	
+	div#description ,
+	div#active ,
+	div#value,
+	div#action {
+	}
+	
+	div#description ,
+	div#active ,
+	div#value {
+       float: left;
+	}
+	div#action {
+	   float: right;
+	}
+	
+	
+	div#description {
+	   width: 40%;
+	}
+	
+	div#active {
+	   width: 20%;
+	}
+	
+	div#value {
+	   width: 10%;
+	}
+	
+	div#action {
+	   width: 30%;
+	}
+
 }

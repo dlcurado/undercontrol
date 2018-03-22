@@ -58,9 +58,24 @@
 	def proposta_ativa
 		propostas.each do |proposta|
 			if proposta.ativa
-				return proposta.descricao
+				return proposta
 			end
 		end
 		return "Sem proposta ativa"
+	end
+	
+	def img
+		case tipo_evento.id
+		when 1
+			"corporativo.png"
+		when 2
+			"formatura.png"
+		when 3
+			"casamento.png"
+		when 4
+			"debutante.png"
+		else
+			"outros.png"
+		end
 	end
 end

@@ -15,71 +15,103 @@
     </div>
   <% end %>
 
+
   <!-- ********* DADOS DO CLIENTES ********* -->
-  <hr />
-  <p>
-  	Cliente: <%= text_field_tag :nome, 'Nome' , class: "combo_autocomplete nome", value: params[:nome].nil? ? 'Nome' : params[:nome] %>
-  </p>
-  <p>	
-  		<%= form.fields_for :cliente do |cli| %>
-  			<%= cli.label :nome %><%= cli.text_field :nome %><br />
-  			<%= cli.label :telefone %><%= cli.text_field :telefone %><br />
-  			<%= cli.label :email %><%= cli.text_field :email %><br />
-  		<% end %>
+  <div class="form-style-3">
 
-  </p>
-  <hr />
-  
-  <p>
-    Data do Evento: <%= form.text_field :data_evento, class: 'datepicker' %>
-  </p>
-
-  <!-- ********* DADOS DO LOCAL ********* -->
-  <hr />
-  <p>
-  	Local do Evento: <%= form.collection_select(:local_id, Local.all, :id, :nome) %>
-  </p>
-  <p>	
-  		<%= form.fields_for :local do |local| %>
-  			<%= local.label :nome %><%= local.text_field :nome %><br />
-  			<%= local.label :endereco %><%= local.text_field :endereco %><br />
-  			<%= local.label :cidade %><%= local.text_field :cidade %><br />
-  			<%= local.label :estado %><%= local.text_field :estado %>
-  		<% end %>
-
-  </p>
-  <hr />
-  
-  <p>
-  	Tipo de Evento: <%= form.collection_select(:tipo_evento_id, TipoEvento.all, :id, :descricao) %>
-  </p>
-  
-  
-  <p>
-    Hora montagem: <%= form.text_field :hora_montagem, class: 'datepicker' %>
-  </p>
-  <p>
-    Hora desmontagem: <%= form.text_field :hora_desmontagem, class: 'datepicker' %>
-  </p>
-  
-  <p>
-  	Status do evento: <%= form.select :evento_status, Evento::STATUS.map{|status| [status[1], status[0]]} %>
-  </p>
-  
-  <!-- ###### PROPOSTSAS ##### -->
-  <% if !@evento.propostas.empty? %>
-	  <p>
-		Propostas:<br />
-		<%= form.fields_for :propostas do |proposta| %>
-			<%= proposta.text_field :descricao %> (<%= proposta.text_field :ativa %>) 
-			[
-				<%= link_to 'Ativar', evento_proposta_path(@evento, proposta.object.id, ativa: true ), remote: true, :method => :put %> | 
-				<%= link_to 'Desativar', evento_proposta_path(@evento, proposta.object.id, ativa: false ), remote: true, method: :put %>
-			]<br />
+	<fieldset>
+		<legend><%= form.label :cliente %></legend>
+		<!--p>
+		  Cliente: <%= text_field_tag :nome, 'Nome' , class: "combo_autocomplete nome", value: params[:nome].nil? ? 'Nome' : params[:nome] %>
+		</p-->
+	
+		<%= form.fields_for :cliente do |cli| %>
+			<label><%= cli.label :nome %><%= cli.text_field :nome, class: "input-field" %></label>
+			<label><%= cli.label :telefone %><%= cli.text_field :telefone %></label>
+			<label><%= cli.label :email %><%= cli.text_field :email %></label>
 		<% end %>
+	</fieldset>
 
-	  </p>
-  <% end %>
+	<!-- ********* DADOS DO LOCAL ********* -->
+	<fieldset>
+	   <legend><%= form.label :local %></legend>
+
+	   <!--p>
+		 Local do Evento: <%= form.collection_select(:local_id, Local.all, :id, :nome) %>
+	   </p-->
+	   <%= form.fields_for :local do |local| %>
+		   <label><%= local.label :nome %><%= local.text_field :nome %></label>
+		   <label><%= local.label :endereco %><%= local.text_field :endereco %></label>
+		   <label><%= local.label :cidade %><%= local.text_field :cidade %></label>
+		   <label><%= local.label :estado %><%= local.text_field :estado %></label>
+	   <% end %>
+	</fieldset>
+
+	<!-- ********* DADOS DO EVENTO ********* -->
+	<fieldset>
+		<legend>Dados do evento</legend>
+	
+	   <label>
+		   <label>Data do Evento:</label>
+		   <%= form.text_field :data_evento, class: 'datepicker' %>
+	   </label>
+	
+	   <label>
+		   <label>Tipo de Evento:</label>
+		   <%= form.collection_select(:tipo_evento_id, TipoEvento.all, :id, :descricao) %>
+	   </label>
+
+	   <fieldset>
+		   <legend>Montagem</legend>
+
+		   <label>Data</label>
+		   <%= form.text_field :data_montagem, class: 'datepicker' %>
+
+		   <label>Hora</label>
+		   <%= form.text_field :hora_montagem %>
+	   </fieldset>
+	   
+	   
+	   <fieldset>
+		   <legend>Desmontagem</legend>
+
+		   <label>Data</label>
+		   <%= form.text_field :data_desmontagem, class: 'datepicker' %>
+
+		   <label>Hora</label>
+		   <%= form.text_field :hora_desmontagem %>
+	   </fieldset>
+
+	   <label>
+		   <label>Status do evento:</label>
+		   <%= form.select :evento_status, Evento::STATUS.map{|status| [status[1], status[0]]} %>
+	   </label>
+	 </fieldset>
+  
+	 <!-- ###### PROPOSTSAS ##### -->
+	 <!-- ********* DADOS DO LOCAL ********* -->
+	<% if !@evento.propostas.empty? %>
+	   <fieldset><legend>Propostas</legend>
+	       <div id="proposta">
+			  <div id="description">Num. | Descrição</div>
+			  <div id="value">Valor</div>
+			  <div id="active">Ativa?</div>
+			  <div id="action">Botões de ação</div>
+		   </div>
+		   <% @evento.propostas.each do |proposta| %>
+			   <div id="proposta">
+				   <div id="description"><%= proposta.numero %> | <%= proposta.descricao %></div>
+				   <div id="value"><%= proposta.valor %></div>
+				   <div id="active"><% if proposta.ativa %> (Ativa) <% end %></div>
+				   <div id="action">[
+					   <%= link_to 'Editar', edit_evento_proposta_path(@evento, proposta ) %> | 
+					   <%= link_to 'Ativar', evento_proposta_path(@evento, proposta.id, ativa: true ), remote: true, :method => :put %> | 
+					   <%= link_to 'Desativar', evento_proposta_path(@evento, proposta.id, ativa: false ), remote: true, method: :put %>
+				   ]</div>
+			   </div>
+		   <% end %>
+	   </fieldset>
+    <% end %>
   
   <% if !@evento.id.nil? %>
   	  <p>
@@ -87,24 +119,32 @@
 	  </p>
   <% end %>
   
-  <!-- ###### HISTORICOS ##### -->
-  <% if !@evento.historicos.empty? %>
-	  <p>
-		Histórico:<br />
-		<%= form.fields_for :historicos do |historico| %>
-			<%= historico.text_field :descricao %>
-			<br />
-		<% end %>
-	  </p>
-  <% end %>
   
-  <% if !@evento.id.nil? %>
-  	  <p>
-		<%= link_to 'Adicionar historico', new_evento_historico_path(@evento) %>
-	  </p>
-  <% end %>
+  
+  <!-- ********* HISTORICO DE CONTAO ********* -->
+  	<% if !@evento.historicos.empty? %>
+	<fieldset><legend>Histórico</legend>
+		  <%= form.fields_for :historicos do |historico| %>
+			  <label>
+			  	<label><%= historico.text_field :descricao %></label>
+			  	<!-- TODO: Implementar ações de edição e exclusão -->
+			  </label>
+		  <% end %>
+	</fieldset>
+	<% end %>
+ 
+	<% if !@evento.id.nil? %>
+		<p>
+		  <%= link_to 'Adicionar historico', new_evento_historico_path(@evento) %>
+		</p>
+	<% end %>
+  
+  
   
   <p>
     <%= form.submit "Salvar" %>
   </p>
+  </div>
+
+
 <% end %>

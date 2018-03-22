@@ -1,52 +1,65 @@
 <div id="filters">
-  <%= form_tag(eventos_path, method: "get") do %>
-	<%= text_field_tag :nome, 'Nome' , class: "combo_autocomplete", value: params[:nome].nil? ? 'Nome' : params[:nome] %>
-	<%= text_field_tag :data_evento, 'Data do evento', class: "datepicker", value: params[:data_evento].nil? ? 'Data do evento' : params[:data_evento] %>
-	<%= select_tag(:evento_status, options_from_collection_for_select(Evento::STATUS, :first, :last), {prompt: 'Status do evento'} ) %>
-	<%= submit_tag "Filtrar" %>
-  <% end %>
+   <fieldset>
+	  <legend>Filtros</legend>
+	
+	  <%= form_tag(eventos_path, method: "get") do %>
+		 <%= text_field_tag :nome, 'Nome' , class: "combo_autocomplete nome", value: params[:nome].nil? ? 'Nome' : params[:nome] %>
+		 <%= select_month( @mes_default, field_name: "mes", prompt: "Mês" ) %>
+		 <%= select_year( @ano_default, field_name: "ano", start_year: 2018, end_year: 2040, prompt: "Ano") %>
+		 <%= select_tag(:evento_status, options_from_collection_for_select(Evento::STATUS, :first, :last), {prompt: 'Status do evento'} ) %>
+		 <%= submit_tag "Filtrar" %>
+	   <% end %>
+   </fieldset>
 </div>
 
-<br />
+<div id="results" class="container">
+   <% @eventos.each do |evento| %>
+	  <div id="results-evento" style="background-color:<%= evento.cor_fundo %>" class="card" data-source-event-id="<%= evento.id %>">
+	     <div class="icon">
+			 <%= image_tag evento.img, alt: evento.tipo_evento.descricao %>
+		 </div>
+		 
+		 <div class="description">
+			 <label><%= evento.data %></label>
+			 <label>
+				 <% if evento.local.nil? %>
+					 "Não definido"
+				 <% else %>
+					 <%= evento.local.nome %>
+				 <% end %>
+			 </label>
 
-<div id="results">
+			 <label>
+			 <%= Evento::STATUS[evento.evento_status] %>
+			 </label>
+		 </div>	 
+		 
 
-  <table border='1'>
-	<tr>
-	  <th>Cliente</td>
-	  <th>Data</td>
-	  <th>Local</td>
-	  <th>Tipo de Evento</td>
-	  <th>Status</th>
-	  <th>Proposta</th>
-	  <th>Último Contato em</th>
-	  <th>Histórico</th>
-	  <th>Editar</td>
-	  <th>Desativar</td>
-	</tr>
+		 <div class="action">
+		 	 <%= link_to image_tag('view.png', id: 'view', alt: 'Visualizar', class: 'action'), 
+		 	 	evento_path(evento), title: 'Visualizar', rel: 'Visualizar', remote: true %>
 
-	<% @eventos.each do |evento| %>
-	  <tr bgcolor="<%= evento.cor_fundo %>">
-		<td><%= evento.cliente.nome %></td>
-		<td><%= evento.data %></td>
+			 <%= link_to image_tag('edit.png', id: 'edit', alt: 'Editar', class: 'action'), 
+		 	 	edit_evento_path(evento), title: 'Editar', rel: 'Editar', remote: false %>
 
-		<% if evento.local.nil? %>
-			<td>"Não definido"</td>
-		<% else %>
-			<td><%= evento.local.nome %></td>
-		<% end %>
-
-		<td><%= evento.tipo_evento.descricao %></td>
-		<td><%= Evento::STATUS[evento.evento_status] %></td>
-		<td>000000</td>
-		<td><%= evento.data_ultimo_contato%></td>
-		<td><%= link_to 'Ver histórico', evento_path(evento) %></td>
-		<td><%= link_to 'Editar', edit_evento_path(evento) %></td>
-		<td><%= link_to 'Desativar', evento_path(evento), 
-				method: :delete,
-				data: { confirm: 'Tem certeza que deseja excluir este evento?' }  %></td>
-	  </tr>
+			 <%= image_tag 'delete.png', id: 'delete', alt: 'Delete', class: 'action' %>
+		 </div>
+		 
+		 <div id="details" style="display: none;">
+			 Cliente: <%= evento.cliente.nome %> | 
+			 Proposta: 123123<br />
+		 
+			 <%= evento.data_ultimo_contato%>
+			 <!--td><%= link_to 'Ver histórico', evento_path(evento) %></td>
+			 <td><%= link_to 'Editar', edit_evento_path(evento) %></td>
+			 <td><%= link_to 'Desativar', evento_path(evento), 
+					 method: :delete,
+					 data: { confirm: 'Tem certeza que deseja excluir este evento?' }  %></td-->
+		 </div>
+	  </div>
 	<% end %>
-  </table>
-
+   
+   	
+   </div>
+</div>
 <div>
